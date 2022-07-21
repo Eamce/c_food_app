@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.c_food_app">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -13,6 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.C_food_app">
+        <activity
+            android:name=".View_Item"
+            android:exported="false" />
+        <activity
+            android:name=".Cart"
+            android:exported="false" />
         <activity
             android:name=".Home"
             android:exported="false" />
