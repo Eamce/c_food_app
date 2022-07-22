@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
                 animationView.addAnimatorUpdateListener((animation) -> {
                     // Do something.
                     if (isConnected()) {
-                        Intent intent = new Intent(MainActivity.this, Login.class);
-//                        Intent intent = new Intent(MainActivity.this, Home.class);
+//                        Intent intent = new Intent(MainActivity.this, Login.class);
+                        Intent intent = new Intent(MainActivity.this, Home.class);
                         startActivity(intent);
                         finish();
                     } else {
