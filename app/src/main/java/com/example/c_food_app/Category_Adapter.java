@@ -43,23 +43,18 @@ public class Category_Adapter extends BaseAdapter {
         this.prices = prices;
         this.act=act;
     }
-
-
     @Override
     public int getCount() {
         return description.length;
     }
-
     @Override
     public Object getItem(int i) {
         return i;
     }
-
     @Override
     public long getItemId(int i) {
         return i;
     }
-
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.category_grid,null);
@@ -70,7 +65,6 @@ public class Category_Adapter extends BaseAdapter {
         cat_img.setImageDrawable(images[position]);
         img_desc.setText(description[position]);
         price.setText(prices[position]);
-
         cat_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,22 +73,18 @@ public class Category_Adapter extends BaseAdapter {
                         Drawable drawable = images[i];
                         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
                         String str_img=getStringImage(bitmap);
-                        byte[] decodedString = Base64.decode(str_img, Base64.DEFAULT);
                         Intent intent = new Intent(context, View_Item.class);
                         intent.putExtra("description",description[i]);
                         intent.putExtra("price", prices[i]);
                         globalvars.set("image",str_img);
-//                        intent.putExtra("images", decodedString);
                         context.startActivity(intent);
                         System.out.println("DESCRIPTION: " +description[i]);
                         System.out.println("DESCRIPTION: " +prices[i]);
-//                        System.out.println("STRING IMAGE: "+str_img);
                     }
                 }
 
             }
         });
-
         return view;
     }
 
