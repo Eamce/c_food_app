@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -59,9 +60,9 @@ public class Home extends AppCompatActivity {
         String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso"};
         String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00"};
         String[] str_images={str_shrimp,str_scrabs,str_fish,str_squid,str_lobster,str_clamps,str_guso};
-        saveItems(description,price,str_images);
         Category_Adapter adapter = new Category_Adapter(getApplicationContext(), images, description, price, this);
         category_view.setAdapter(adapter);
+//        saveItems(description,price,str_images);
     }
 
     @Override
@@ -90,9 +91,14 @@ public class Home extends AppCompatActivity {
         return encodedImage;
     }
 
-    public void saveItems(String[] des, String[] pr, String[] img){
+    public void  saveItems(String[] des, String[] pr, String[] img) {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("Uploading...Please Wait");
+        pd.show();
+        pd.setCancelable(false);
+        pd.setCanceledOnTouchOutside(false);
+        ajax = new Ajax();
         for(int x=0; x<des.length;x++) {
-            ajax = new Ajax();
             ajax.setCustomObjectListener(new Ajax.MyCustomObjectListener() {
                 @Override
                 public void onsuccess(String data) {
