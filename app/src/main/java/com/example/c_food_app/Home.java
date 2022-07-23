@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -23,12 +25,12 @@ import java.io.SyncFailedException;
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
-
+    Ajax ajax;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        ajax = new Ajax();
         GridView category_view;
         ArrayList<Category> categoryArrayList = new ArrayList<Category>();
         category_view = (GridView) findViewById(R.id.grid_categories);
@@ -60,6 +62,7 @@ public class Home extends AppCompatActivity {
         String[] str_images={str_shrimp,str_scrabs,str_fish,str_squid,str_lobster,str_clamps,str_guso};
         Category_Adapter adapter = new Category_Adapter(getApplicationContext(), images, description, price, this);
         category_view.setAdapter(adapter);
+//        saveItems(description,price,str_images);
     }
 
     @Override
@@ -87,4 +90,41 @@ public class Home extends AppCompatActivity {
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
     }
-}
+
+    public void  saveItems(String[] des, String[] pr, String[] img) {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("Uploading...Please Wait");
+        pd.show();
+        pd.setCancelable(false);
+        pd.setCanceledOnTouchOutside(false);
+        ajax = new Ajax();
+        for(int x=0; x<des.length;x++) {
+            ajax.setCustomObjectListener(new Ajax.MyCustomObjectListener() {
+                @Override
+                public void onsuccess(String data) {
+                    //JSONArray data2;
+//                    pd.dismiss();
+//                System.out.println("String image: " + cat_image);
+//                    System.out.println("Image length: " + cat_image.length());
+                    Toast toast = Toast.makeText(getApplicationContext(), "Successfully added to cart!", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 80);
+                    toast.show();
+                }
+
+                @Override
+                public void onerror() {
+//                pd.dismiss();
+                    Toast toast = Toast.makeText(getApplicationContext(), "Unable to connect. Please check your connection.", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 80);
+                    toast.show();
+                }
+            });
+//            ajax.adddata("cart_id",AES.encrypt(Server.key,String.valueOf(cartId)).toString());
+            ajax.adddata("description", des[x]);
+            ajax.adddata("price", pr[x]);
+            ajax.adddata("image", img[x]);
+            ajax.adddata("availability", "20");
+            ajax.execute(Server.address + "saveItems");
+            }
+        }
+    }

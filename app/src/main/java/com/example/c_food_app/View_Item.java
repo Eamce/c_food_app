@@ -27,7 +27,7 @@ public class View_Item extends AppCompatActivity {
         byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         description.setText(des);
-        price.setText(pri);
+        price.setText("₱"+pri+"/kl.");
         imageView.setImageBitmap(decodedByte);
     }
 
