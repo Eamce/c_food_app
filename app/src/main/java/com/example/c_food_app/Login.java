@@ -58,10 +58,10 @@ public class Login extends AppCompatActivity {
         pd = new ProgressDialog(this);
     }
     public void encryptData(){
-//        encrypted_user= AES.encrypt(Server.key,username.getText().toString()).toString();
-//        encrypted_pass= AES.encrypt(Server.key,password.getText().toString()).toString();
-        encrypted_user=username.getText().toString();
-        encrypted_pass=password.getText().toString();
+        encrypted_user= AES.encrypt(Server.key,username.getText().toString()).toString();
+        encrypted_pass= AES.encrypt(Server.key,password.getText().toString()).toString();
+//        encrypted_user=username.getText().toString();
+//        encrypted_pass=password.getText().toString();
     }
 
     public void checkUser(String user, String pass)

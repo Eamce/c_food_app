@@ -14,10 +14,11 @@
         <entry key="..\:/Appprojects/c_food_app/app/src/main/res/layout/category_grid.xml" value="0.20697463768115942" />
         <entry key="..\:/Appprojects/c_food_app/app/src/main/res/menu/main_menu.xml" value="0.20729166666666668" />
         <entry key="..\:/Appprojects/c_food_app/app/src/main/res/xml/main_menu.xml" value="0.2056159420289855" />
+        <entry key="..\:/CFOODS/c_food_app/app/src/main/res/layout/activity_view_item.xml" value="0.1716485507246377" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
