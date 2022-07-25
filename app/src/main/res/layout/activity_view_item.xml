@@ -28,14 +28,16 @@
             tools:layout_editor_absoluteX="100dp"
             tools:layout_editor_absoluteY="148dp"
             tools:ignore="MissingConstraints" />
-
         <TextView
             android:id="@+id/v_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_width="170dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="148dp"
+            tools:ignore="MissingConstraints"/>
 
     <Button
             android:id="@+id/addtocart"
@@ -44,8 +46,8 @@
             android:text="Add to cart"
             android:layout_gravity="center"
             tools:layout_editor_absoluteX="112dp"
-        android:drawableLeft="@drawable/cart_icon"
+            android:drawableLeft="@drawable/cart_icon"
             tools:layout_editor_absoluteY="208dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints" />>
 </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

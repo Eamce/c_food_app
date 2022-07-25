@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/menu_main_setting"
-        android:icon="@drawable/settings_icon"
-        android:orderInCategory="100"
-        app:showAsAction="always"
-        android:title="Setting" />
-<!--android:actionLayout="@layout/toolbar"-->
-    <item
-        android:id="@+id/menu_main_cart"
-        android:icon="@drawable/cart_icon"
-        android:orderInCategory="200"
-        app:showAsAction="always"
-        android:title="Setting" />
-<!--        android:actionLayout="@layout/toolbar"
--->
+    <group>
+        <item
+            android:id="@+id/menu_main_cart"
+            android:title="My Account" />
+        <item
+            android:id="@+id/menu_main_setting"
+            android:title="Setting" />
+        <item
+            android:id="@+id/logout"
+            android:title="Log out" />
+
+    </group>
+
 </menu>

@@ -20,12 +20,16 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.io.ByteArrayOutputStream;
 import java.io.SyncFailedException;
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
     Ajax ajax;
+    Globalvars globalvars;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,8 @@ public class Home extends AppCompatActivity {
         GridView category_view;
         ArrayList<Category> categoryArrayList = new ArrayList<Category>();
         category_view = (GridView) findViewById(R.id.grid_categories);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        globalvars = new Globalvars(getApplicationContext(),this);
         Drawable shrimp = this.getResources().getDrawable(R.drawable.shrimp);
         Drawable crabs = this.getResources().getDrawable(R.drawable.crabs);
         Drawable fish = this.getResources().getDrawable(R.drawable.fish);
@@ -42,27 +48,36 @@ public class Home extends AppCompatActivity {
         Drawable clamps = this.getResources().getDrawable(R.drawable.clamps);
         Drawable guso = this.getResources().getDrawable(R.drawable.guso);
         Drawable[] images = {shrimp, crabs, fish, squid, lobster, clamps, guso};
-        Bitmap bit_shrimp = ((BitmapDrawable) shrimp).getBitmap();
-        Bitmap bit_crabs = ((BitmapDrawable) crabs).getBitmap();
-        Bitmap bit_fish = ((BitmapDrawable) fish).getBitmap();
-        Bitmap bit_squid = ((BitmapDrawable) squid).getBitmap();
-        Bitmap bit_lobster = ((BitmapDrawable) lobster).getBitmap();
-        Bitmap bit_clamps = ((BitmapDrawable) clamps).getBitmap();
-        Bitmap bit_guso = ((BitmapDrawable) guso).getBitmap();
-        String str_shrimp = getStringImage(bit_shrimp);
-        String str_scrabs = getStringImage(bit_crabs);
-        String str_fish = getStringImage(bit_fish);
-        String str_squid = getStringImage(bit_squid);
-        String str_lobster = getStringImage(bit_lobster);
-        String str_clamps = getStringImage(bit_clamps);
-        String str_guso = getStringImage(bit_guso);
+//        Bitmap bit_shrimp = ((BitmapDrawable) shrimp).getBitmap();
+//        Bitmap bit_crabs = ((BitmapDrawable) crabs).getBitmap();
+//        Bitmap bit_fish = ((BitmapDrawable) fish).getBitmap();
+//        Bitmap bit_squid = ((BitmapDrawable) squid).getBitmap();
+//        Bitmap bit_lobster = ((BitmapDrawable) lobster).getBitmap();
+//        Bitmap bit_clamps = ((BitmapDrawable) clamps).getBitmap();
+//        Bitmap bit_guso = ((BitmapDrawable) guso).getBitmap();
+//        String str_shrimp = getStringImage(bit_shrimp);
+//        String str_scrabs = getStringImage(bit_crabs);
+//        String str_fish = getStringImage(bit_fish);
+//        String str_squid = getStringImage(bit_squid);
+//        String str_lobster = getStringImage(bit_lobster);
+//        String str_clamps = getStringImage(bit_clamps);
+//        String str_guso = getStringImage(bit_guso);
         //  int[] images={R.drawable.shrimp,R.drawable.crabs,R.drawable.fish,R.drawable.squid,R.drawable.lobster,R.drawable.lobster,R.drawable.clamps,R.drawable.clamps};
+
         String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso"};
         String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00"};
-        String[] str_images={str_shrimp,str_scrabs,str_fish,str_squid,str_lobster,str_clamps,str_guso};
+//        String[] str_images={str_shrimp,str_scrabs,str_fish,str_squid,str_lobster,str_clamps,str_guso};
         Category_Adapter adapter = new Category_Adapter(getApplicationContext(), images, description, price, this);
         category_view.setAdapter(adapter);
 //        saveItems(description,price,str_images);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
     @Override
@@ -76,9 +91,13 @@ public class Home extends AppCompatActivity {
         if (item.getItemId() == R.id.menu_main_setting) {
             Toast.makeText(this, "ADASDADADAD", Toast.LENGTH_SHORT).show();
         } else if (item.getItemId() == R.id.menu_main_cart) {
-            Intent cart = new Intent(this, Cart.class);
+            Intent cart = new Intent(this, My_Account.class);
             startActivity(cart);
             Toast.makeText(this, "SSFJGFGFDG", Toast.LENGTH_SHORT).show();
+        }else if(item.getItemId()==R.id.logout){
+            Intent logout = new Intent(this, Login.class);
+            startActivity(logout);
+            globalvars.logout();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -104,7 +123,7 @@ public class Home extends AppCompatActivity {
                 public void onsuccess(String data) {
                     //JSONArray data2;
 //                    pd.dismiss();
-//                System.out.println("String image: " + cat_image);
+//                    System.out.println("String image: " + cat_image);
 //                    System.out.println("Image length: " + cat_image.length());
                     Toast toast = Toast.makeText(getApplicationContext(), "Successfully added to cart!", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 80);

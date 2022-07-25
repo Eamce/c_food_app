@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.airbnb.lottie.LottieAnimationView;
 public class MainActivity extends AppCompatActivity {
     LottieAnimationView animationView;
+    Globalvars globalvars;
     SQLiteDatabase sqLiteDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         sqLiteDatabase = openOrCreateDatabase("cfood.db", MODE_PRIVATE,null);
         //  sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase("cfood.db",MODE_PRIVATE,null);
+        globalvars = new Globalvars(getApplicationContext(),this);
         createSqliteDatabase();
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
@@ -36,12 +38,18 @@ public class MainActivity extends AppCompatActivity {
                 animationView.addAnimatorUpdateListener((animation) -> {
                     // Do something.
                     if (isConnected()) {
-//                        Intent intent = new Intent(MainActivity.this, Login.class);
-                        Intent intent = new Intent(MainActivity.this, Home.class);
-                        startActivity(intent);
-                        finish();
+                        if(globalvars.get("id").isEmpty()){
+                            Intent intent = new Intent(MainActivity.this, Login.class);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Intent intent = new Intent(MainActivity.this, Home.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
                     } else {
-//                        Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
                     }
                 });
                 animationView.playAnimation();
