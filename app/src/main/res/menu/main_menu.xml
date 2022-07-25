@@ -8,6 +8,10 @@
         <item
             android:id="@+id/menu_main_setting"
             android:title="Setting" />
+        <item
+            android:id="@+id/logout"
+            android:title="Log out" />
+
     </group>
 
 </menu>

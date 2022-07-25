@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
     Ajax ajax;
+    Globalvars globalvars;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class Home extends AppCompatActivity {
         ArrayList<Category> categoryArrayList = new ArrayList<Category>();
         category_view = (GridView) findViewById(R.id.grid_categories);
         FloatingActionButton fab = findViewById(R.id.fab);
+        globalvars = new Globalvars(getApplicationContext(),this);
         Drawable shrimp = this.getResources().getDrawable(R.drawable.shrimp);
         Drawable crabs = this.getResources().getDrawable(R.drawable.crabs);
         Drawable fish = this.getResources().getDrawable(R.drawable.fish);
@@ -89,9 +91,13 @@ public class Home extends AppCompatActivity {
         if (item.getItemId() == R.id.menu_main_setting) {
             Toast.makeText(this, "ADASDADADAD", Toast.LENGTH_SHORT).show();
         } else if (item.getItemId() == R.id.menu_main_cart) {
-            Intent cart = new Intent(this, Cart.class);
+            Intent cart = new Intent(this, My_Account.class);
             startActivity(cart);
             Toast.makeText(this, "SSFJGFGFDG", Toast.LENGTH_SHORT).show();
+        }else if(item.getItemId()==R.id.logout){
+            Intent logout = new Intent(this, Login.class);
+            startActivity(logout);
+            globalvars.logout();
         }
         return super.onOptionsItemSelected(item);
     }
