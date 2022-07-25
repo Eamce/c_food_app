@@ -20,6 +20,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.io.ByteArrayOutputStream;
 import java.io.SyncFailedException;
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ public class Home extends AppCompatActivity {
         GridView category_view;
         ArrayList<Category> categoryArrayList = new ArrayList<Category>();
         category_view = (GridView) findViewById(R.id.grid_categories);
+        FloatingActionButton fab = findViewById(R.id.fab);
         Drawable shrimp = this.getResources().getDrawable(R.drawable.shrimp);
         Drawable crabs = this.getResources().getDrawable(R.drawable.crabs);
         Drawable fish = this.getResources().getDrawable(R.drawable.fish);
@@ -57,12 +61,21 @@ public class Home extends AppCompatActivity {
 //        String str_clamps = getStringImage(bit_clamps);
 //        String str_guso = getStringImage(bit_guso);
         //  int[] images={R.drawable.shrimp,R.drawable.crabs,R.drawable.fish,R.drawable.squid,R.drawable.lobster,R.drawable.lobster,R.drawable.clamps,R.drawable.clamps};
+
         String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso"};
         String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00"};
 //        String[] str_images={str_shrimp,str_scrabs,str_fish,str_squid,str_lobster,str_clamps,str_guso};
         Category_Adapter adapter = new Category_Adapter(getApplicationContext(), images, description, price, this);
         category_view.setAdapter(adapter);
 //        saveItems(description,price,str_images);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
     @Override

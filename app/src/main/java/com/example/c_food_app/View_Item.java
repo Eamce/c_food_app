@@ -39,23 +39,23 @@ public class View_Item extends AppCompatActivity {
         addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                builder.setTitle("Are you sure you want to add this to cart?");
-                builder.setCancelable(false);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getApplicationContext(), "Succesfully Added to cart!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                      dialogInterface.dismiss();
-                    }
-                });
-                builder.show();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+//                builder.setTitle("Are you sure you want to add this to cart?");
+//                builder.setCancelable(false);
+//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Toast.makeText(getApplicationContext(), "Succesfully Added to cart!", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                      dialogInterface.dismiss();
+//                    }
+//                });
+//                builder.show();
             }
         });
     }

@@ -54,6 +54,7 @@ public class Login extends AppCompatActivity {
         password         = (EditText) findViewById(R.id.password);
         tv_createaccount = (TextView) findViewById(R.id.tv_createaccount);
         loginbtn         = (Button)   findViewById(R.id.loginbtn);
+        globalvars  = new Globalvars(getApplicationContext(),this);
 //        registerbtn      = (Button)   findViewById(R.id.registerbtn);
         pd = new ProgressDialog(this);
     }
@@ -107,11 +108,11 @@ public class Login extends AppCompatActivity {
                         }
                         pd.dismiss();
                         System.out.println("IDDDD"+id);
-//                        globalvars.set("id",id);
-//                        globalvars.set("name",name);
-//                        globalvars.set("email",email);
-//                        globalvars.set("password",e_password);
-//                        globalvars.set("phone",contact);
+                        globalvars.set("id",id);
+                        globalvars.set("name",name);
+                        globalvars.set("email",email);
+                        globalvars.set("password",e_password);
+                        globalvars.set("phone",contact);
                         Toast toast = Toast.makeText(getApplicationContext(),"Welcome, "+name+"!",Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL,0,80);
                         toast.show();
