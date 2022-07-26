@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class View_Item extends AppCompatActivity {
     ImageView imageView;
-    TextView description,quantity;
+    TextView description,quantity,total;
     TextView price;
     Globalvars globalvars;
     Button addtocart,minus,add;
@@ -25,6 +25,7 @@ public class View_Item extends AppCompatActivity {
     byte[] decodedString;
     Bitmap decodedByte;
     int quan=0;
+    double total_amt= 0,price_amt=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,9 @@ public class View_Item extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                              quan= quan+1;
-                            quantity.setText(""+quan);
+                             total_amt=price_amt*quan;
+                             quantity.setText(""+quan);
+                             total.setText("Total: "+total_amt);
                             if(quan>0){
                                 minus.setEnabled(true);
                             }
@@ -49,7 +52,9 @@ public class View_Item extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             quan= quan-1;
+                            total_amt=price_amt*quan;
                             quantity.setText(""+quan);
+                            total.setText("Total: "+total_amt);
                             if(quan<=0){
                                 minus.setEnabled(false);
                             }
@@ -59,7 +64,6 @@ public class View_Item extends AppCompatActivity {
                     addtocart.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
                         }
                     });
     }
@@ -73,11 +77,13 @@ public class View_Item extends AppCompatActivity {
             minus          = findViewById(R.id.minus);
             add            = findViewById(R.id.plus);
             quantity       = findViewById(R.id.quantity);
+            total          = findViewById(R.id.total);
             globalvars     = new Globalvars(getApplicationContext(),this);
             quan           = Integer.parseInt(quantity.getText().toString().trim());
             des            = intent.getStringExtra("description");
             pri            = intent.getStringExtra("price");
             image          = globalvars.get("image");
+            price_amt      = Double.parseDouble(pri);
             decodedString  = Base64.decode(image, Base64.DEFAULT);
             decodedByte    = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 if(quan<=0){
