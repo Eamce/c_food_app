@@ -17,54 +17,71 @@ import android.widget.Toast;
 
 public class View_Item extends AppCompatActivity {
     ImageView imageView;
-    TextView description;
+    TextView description,quantity;
     TextView price;
     Globalvars globalvars;
-    Button addtocart;
+    Button addtocart,minus,add;
+    String des,pri,image;
+    byte[] decodedString;
+    Bitmap decodedByte;
+    int quan=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_item);
         init();
-        Intent intent = getIntent(); // get Intent which we set from Previous Activity
-        String des = intent.getStringExtra("description");
-        String pri = intent.getStringExtra("price");
-        String image = globalvars.get("image");
-        byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         description.setText(des);
         price.setText("₱"+pri+"/kl.");
         imageView.setImageBitmap(decodedByte);
 
-        addtocart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-//                builder.setTitle("Are you sure you want to add this to cart?");
-//                builder.setCancelable(false);
-//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        Toast.makeText(getApplicationContext(), "Succesfully Added to cart!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                      dialogInterface.dismiss();
-//                    }
-//                });
-//                builder.show();
-            }
-        });
+                    add.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                             quan= quan+1;
+                            quantity.setText(""+quan);
+                            if(quan>0){
+                                minus.setEnabled(true);
+                            }
+                        }
+                    });
+
+                    minus.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            quan= quan-1;
+                            quantity.setText(""+quan);
+                            if(quan<=0){
+                                minus.setEnabled(false);
+                            }
+                        }
+                    });
+
+                    addtocart.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
     }
 
         public void init(){
-        imageView      = findViewById(R.id.imageView);
-        description    = findViewById(R.id.v_description);
-        price          = findViewById(R.id.v_price);
-        addtocart      = findViewById(R.id.addtocart);
-        globalvars     = new Globalvars(getApplicationContext(),this);
+            Intent intent  = getIntent(); // get Intent which we set from Previous Activity
+            imageView      = findViewById(R.id.imageView);
+            description    = findViewById(R.id.v_description);
+            price          = findViewById(R.id.v_price);
+            addtocart      = findViewById(R.id.addtocart);
+            minus          = findViewById(R.id.minus);
+            add            = findViewById(R.id.plus);
+            quantity       = findViewById(R.id.quantity);
+            globalvars     = new Globalvars(getApplicationContext(),this);
+            quan           = Integer.parseInt(quantity.getText().toString().trim());
+            des            = intent.getStringExtra("description");
+            pri            = intent.getStringExtra("price");
+            image          = globalvars.get("image");
+            decodedString  = Base64.decode(image, Base64.DEFAULT);
+            decodedByte    = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                if(quan<=0){
+                    minus.setEnabled(false);
+                }
         }
 }

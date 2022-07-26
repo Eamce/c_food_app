@@ -39,5 +39,4 @@ public class My_Account extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
