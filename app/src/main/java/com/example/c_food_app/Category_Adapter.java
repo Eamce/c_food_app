@@ -78,12 +78,11 @@ public class Category_Adapter extends BaseAdapter {
                         intent.putExtra("price", prices[i]);
                         intent.putExtra("id",position);
                         globalvars.set("image",str_img);
-                        context.startActivity(intent);
+                        act.startActivity(intent);
                         System.out.println("DESCRIPTION: " +description[i]);
                         System.out.println("DESCRIPTION: " +prices[i]);
                     }
                 }
-
             }
         });
         return view;

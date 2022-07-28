@@ -40,7 +40,6 @@ public class View_Item extends AppCompatActivity {
         description.setText(des);
         price.setText("₱"+pri+"/kl.");
         imageView.setImageBitmap(decodedByte);
-
                     add.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -53,7 +52,6 @@ public class View_Item extends AppCompatActivity {
                             }
                         }
                     });
-
                     minus.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -66,7 +64,6 @@ public class View_Item extends AppCompatActivity {
                             }
                         }
                     });
-
                     addtocart.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

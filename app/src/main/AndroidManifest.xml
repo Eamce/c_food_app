@@ -22,7 +22,7 @@
             android:name=".View_Item"
             android:exported="false" />
         <activity
-            android:name=".Cart"
+            android:name=".Cart_Adapter"
             android:exported="false" />
         <activity
             android:name=".Home"

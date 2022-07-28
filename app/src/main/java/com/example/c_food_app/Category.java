@@ -55,12 +55,11 @@ public class Category {
     public void setBitmap_img(Bitmap bitmap_img) {
         this.bitmap_img = bitmap_img;
     }
-
     public String getProd_id() {
         return prod_id;
     }
-
     public void setProd_id(String prod_id) {
         this.prod_id = prod_id;
     }
+
 }
