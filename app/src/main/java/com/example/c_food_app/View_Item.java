@@ -72,7 +72,7 @@ public class View_Item extends AppCompatActivity {
                             cv.put("price",pri);
                             cv.put("cat_image",globalvars.get("image"));
                             cv.put("quantity",quantity.getText().toString());
-                            cv.put("total",total.toString());
+                            cv.put("total",String.valueOf(total_amt));
                             sqLiteDatabase.insert("cart",null,cv);
                             Toast.makeText(View_Item.this, "Successfully added to cart!", Toast.LENGTH_SHORT).show();
                         }
