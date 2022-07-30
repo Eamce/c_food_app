@@ -1,5 +1,6 @@
 package com.example.c_food_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -11,6 +12,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,10 +28,11 @@ public class View_Item extends AppCompatActivity {
     TextView price;
     Globalvars globalvars;
     Button addtocart,minus,add;
-    String des,pri,image,id;
+    String des,pri,image,id,count;
     byte[] decodedString;
     Bitmap decodedByte;
     int quan=0;
+
     double total_amt= 0,price_amt=0;
     ContentValues cv;
     SQLiteDatabase sqLiteDatabase ;
@@ -49,6 +53,7 @@ public class View_Item extends AppCompatActivity {
                              total.setText("Total: "+total_amt);
                             if(quan>0){
                                 minus.setEnabled(true);
+                                addtocart.setEnabled(true);
                             }
                         }
                     });
@@ -61,18 +66,20 @@ public class View_Item extends AppCompatActivity {
                             total.setText("Total: "+total_amt);
                             if(quan<=0){
                                 minus.setEnabled(false);
+                                addtocart.setEnabled(false);
                             }
                         }
                     });
                     addtocart.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            cv.put("cart_id",id);
+                            cv.put("cart_id",String.valueOf(count));
                             cv.put("description",des);
                             cv.put("price",pri);
                             cv.put("cat_image",globalvars.get("image"));
                             cv.put("quantity",quantity.getText().toString());
                             cv.put("total",String.valueOf(total_amt));
+                            cv.put("prod_id",id);
                             sqLiteDatabase.insert("cart",null,cv);
                             Toast.makeText(View_Item.this, "Successfully added to cart!", Toast.LENGTH_SHORT).show();
                         }
@@ -94,6 +101,7 @@ public class View_Item extends AppCompatActivity {
             des            = intent.getStringExtra("description");
             pri            = intent.getStringExtra("price");
             id             = intent.getStringExtra("id");
+            count          = intent.getStringExtra("count");
             image          = globalvars.get("image");
             price_amt      = Double.parseDouble(pri);
             decodedString  = Base64.decode(image, Base64.DEFAULT);
@@ -103,6 +111,29 @@ public class View_Item extends AppCompatActivity {
             decodedByte    = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 if(quan<=0){
                     minus.setEnabled(false);
+                    addtocart.setEnabled(false);
                 }
+        }
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.main_menu, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+            if (item.getItemId() == R.id.menu_main_setting) {
+                Toast.makeText(this, "ADASDADADAD", Toast.LENGTH_SHORT).show();
+            } else if (item.getItemId() == R.id.menu_main_cart) {
+                Intent cart = new Intent(this, My_Account.class);
+                startActivity(cart);
+                Toast.makeText(this, "SSFJGFGFDG", Toast.LENGTH_SHORT).show();
+            }else if(item.getItemId()==R.id.logout){
+                Intent logout = new Intent(this, Login.class);
+                startActivity(logout);
+                globalvars.logout();
+            }
+            return super.onOptionsItemSelected(item);
         }
 }

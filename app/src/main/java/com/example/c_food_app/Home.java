@@ -63,7 +63,6 @@ public class Home extends AppCompatActivity {
 //        String str_clamps = getStringImage(bit_clamps);
 //        String str_guso = getStringImage(bit_guso);
         //  int[] images={R.drawable.shrimp,R.drawable.crabs,R.drawable.fish,R.drawable.squid,R.drawable.lobster,R.drawable.lobster,R.drawable.clamps,R.drawable.clamps};
-
         String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso"};
         String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00"};
 //        String[] str_images={str_shrimp,str_scrabs,str_fish,str_squid,str_lobster,str_clamps,str_guso};

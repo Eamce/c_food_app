@@ -31,6 +31,7 @@ public class Category_Adapter extends BaseAdapter {
     Context context;
     Globalvars globalvars;
     Activity act;
+
 //    public Category_Adapter(@NonNull Context context, int resource) {
 //        super(context, resource);
 //    }
@@ -57,6 +58,7 @@ public class Category_Adapter extends BaseAdapter {
     }
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
+        int count=0;
         view = inflater.inflate(R.layout.category_grid,null);
         globalvars=new Globalvars(context,act);
         ImageButton cat_img = view.findViewById(R.id.cat_img);
@@ -76,13 +78,15 @@ public class Category_Adapter extends BaseAdapter {
                         Intent intent = new Intent(context, View_Item.class);
                         intent.putExtra("description",description[i]);
                         intent.putExtra("price", prices[i]);
-                        intent.putExtra("id",position);
+                        intent.putExtra("id",String.valueOf(i));
+                        intent.putExtra("count",String.valueOf(count));
                         globalvars.set("image",str_img);
                         act.startActivity(intent);
                         System.out.println("DESCRIPTION: " +description[i]);
                         System.out.println("DESCRIPTION: " +prices[i]);
                     }
                 }
+
             }
         });
         return view;

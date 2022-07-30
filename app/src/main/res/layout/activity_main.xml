@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/forlogo2"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
     <androidx.appcompat.widget.LinearLayoutCompat
