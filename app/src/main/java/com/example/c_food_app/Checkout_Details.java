@@ -2,6 +2,7 @@ package com.example.c_food_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 public class Checkout_Details extends AppCompatActivity {
         EditText fullname,address;
         Button checkout_btn;
+        SQLiteDatabase sqLiteDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,14 +28,14 @@ public class Checkout_Details extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     public void init(){
         fullname = (EditText) findViewById(R.id.fullname);
         address  = (EditText) findViewById(R.id.address);
         checkout_btn = (Button) findViewById(R.id.checkout_btn);
+        String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
+        sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
     }
 }
 
