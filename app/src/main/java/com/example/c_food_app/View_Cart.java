@@ -43,7 +43,7 @@ public class View_Cart extends AppCompatActivity {
     Globalvars globalvars;
     ArrayList<Cart> cart_list;
     Button order_btn;
-    Cursor row;
+    Cursor row=null;
     Msgbox msgbox;
     float finalTotal_payable;
     float total_payable = 0;
