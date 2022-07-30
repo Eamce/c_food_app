@@ -43,7 +43,7 @@
         </ListView>
     </LinearLayout>
     <Button
-        android:id="@+id/order_btn"
+        android:id="@+id/checkout_btn"
         android:layout_width="145dp"
         android:layout_height="49dp"
         android:background="@color/orange"
