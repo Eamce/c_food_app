@@ -106,11 +106,26 @@ public class View_Cart extends AppCompatActivity {
                     return false;
                 }
             });
+
         order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(View_Cart.this, Checkout_Details.class);
-                startActivity(intent);
+                msgbox.showyesno( "Hello","Are you sure you want to proceed?");
+                msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                    @Override
+                    public void onyes() {
+                        if(globalvars.get("delivery_address").isEmpty()){
+
+                        }else {
+                            Intent intent = new Intent(View_Cart.this, Checkout_Details.class);
+                            startActivity(intent);
+                        }
+
+                    }
+                    @Override
+                    public void onno() {
+                    }
+                });
             }
         });
     }
@@ -139,7 +154,6 @@ public class View_Cart extends AppCompatActivity {
                 //mydatabase.execSQL("DELETE FROM employeeitems_backup WHERE eb_emp_id="+qttext(fid));
                 msgtoaster("Successfully removed.");
                 refreshList();
-//                displayemployeelogs();
             }
 
             @Override

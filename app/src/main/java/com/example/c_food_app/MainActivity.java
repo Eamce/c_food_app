@@ -1,6 +1,7 @@
 package com.example.c_food_app;
 
 import android.animation.ValueAnimator;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     LottieAnimationView animationView;
     Globalvars globalvars;
     SQLiteDatabase sqLiteDatabase;
+    String[] town_name;
+    String[] zipcode;
+    String[] town_status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +29,13 @@ public class MainActivity extends AppCompatActivity {
         sqLiteDatabase = openOrCreateDatabase("cfood.db", MODE_PRIVATE,null);
         //  sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase("cfood.db",MODE_PRIVATE,null);
         globalvars = new Globalvars(getApplicationContext(),this);
+        town_data();
         createSqliteDatabase();
+        insert_town();
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 animationView=(LottieAnimationView) findViewById(R.id.animationView);
                 // Custom animation speed or duration.
                 ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
@@ -107,6 +114,172 @@ public class MainActivity extends AppCompatActivity {
                 "quantity TEXT,"+
                 "total TEXT,"+
                 "cat_image TEXT)");
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS towns(town_id INTEGER PRIMARY KEY,"+
+                "town_name TEXT,"+
+                "zipcode TEXT,"+
+                "status TEXT)");
+
 //        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS tbl_order(id INTEGER PRIMARY KEY,"+")");
     }
+
+        public void insert_town(){
+            ContentValues cv = new ContentValues();
+            for(int count=0; count<town_name.length;count++){
+                cv.put("town_name",town_name[count]);
+                cv.put("zipcode",zipcode[count]);
+                cv.put("status",town_status[count]);
+                sqLiteDatabase.insert("towns",null,cv);
+            }
+        }
+
+        public void town_data(){
+            town_name= new String[]{"Alburquerque",
+                    "Alicia",
+                    "Anda",
+                    "Antequera",
+                    "Baclayon",
+                    "Balilihan",
+                    "Batuan",
+                    "Bien Unido",
+                    "Bilar",
+                    "Buenavista",
+                    "Calape",
+                    "Candijay",
+                    "Carlos P. Garica",
+                    "Carmen",
+                    "Catigbian",
+                    "Clarin",
+                    "Corella",
+                    "Cortes",
+                    "Dagohoy",
+                    "Danao",
+                    "Dauis",
+                    "Dimiao",
+                    "Duero",
+                    "Garcia Hernandez",
+                    "Guindulman",
+                    "Inabanga",
+                    "Jagna" ,
+                    "Getafe",
+                    "Lila",
+                    "Loay",
+                    "Loboc",
+                    "Loon" ,
+                    "Mabini" ,
+                    "Maribojoc" ,
+                    "Panglao" ,
+                    "Pilar" ,
+                    "Sagbayan",
+                    "San Isidro",
+                    "San Miguel",
+                    "Sevilla",
+                    "Sierra Bullones",
+                    "Sikatuna",
+                    "Tagbilaran City",
+                    "Talibon",
+                    "Talibon",
+                    "Trinidad",
+                    "Tubigon",
+                    "Ubay",
+                    "Valencia"};
+
+            zipcode=new String[]{"6302",
+                    "6314",
+                    "6311",
+                    "6335",
+                    "6301",
+                    "6342",
+                    "6318",
+                    "6326",
+                    "6317",
+                    "6333",
+                    "6328",
+                    "6312",
+                    "6346",
+                    "6319",
+                    "6343",
+                    "6330",
+                    "6337",
+                    "6341",
+                    "6322",
+                    "6344",
+                    "6339",
+                    "6305",
+                    "6309",
+                    "6307",
+                    "6310",
+                    "6332",
+                    "6308",
+                    "6334",
+                    "6304",
+                    "6303",
+                    "6316",
+                    "6327",
+                    "6313",
+                    "6336",
+                    "6340",
+                    "6321",
+                    "6331",
+                    "6345",
+                    "6323",
+                    "6347",
+                    "6320",
+                    "6338",
+                    "6300",
+                    "6325",
+                    "6325",
+                    "6324",
+                    "6329",
+                    "6315",
+                    "6306"};
+            town_status = new String[]{"1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "0",
+                    "1",
+                    "1",
+                    "1",
+                    "1",
+                    "1"};
+        }
 }

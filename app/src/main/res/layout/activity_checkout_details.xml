@@ -8,9 +8,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="@id/order_btn"
         android:layout_height="match_parent">
         <TextView
+            android:id="@+id/textorder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="25dp"
+            android:text="My Order"/>
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Address"/>
+
+        <ListView
+            android:id="@+id/checkout_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="@id/order_btn">
+
+
+        </ListView>
+    </LinearLayout>
+    <Button
+        android:id="@+id/checkout_btn"
+        android:layout_width="145dp"
+        android:layout_height="49dp"
+        android:background="@color/orange"
+        android:text="Check Out"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!-- <TextView
             android:layout_width="match_parent"
             android:text="My Order"
             android:textAlignment="center"
@@ -33,25 +68,4 @@
             android:ems="10"
             android:hint="Enter Address"
             android:inputType="textPersonName"
-            android:text="" />
-        <ListView
-            android:id="@+id/checkout_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="@id/order_btn"
-            >
-        </ListView>
-    </LinearLayout>
-    <Button
-        android:id="@+id/checkout_btn"
-        android:layout_width="145dp"
-        android:layout_height="49dp"
-        android:background="@color/orange"
-        android:text="Check Out"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:text="" />-->
