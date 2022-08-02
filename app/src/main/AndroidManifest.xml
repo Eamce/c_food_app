@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C_food_app">
         <activity
+            android:name=".MyOrder"
+            android:exported="false" />
+        <activity
             android:name=".Set_Delivery_Address"
             android:exported="false" />
         <activity
