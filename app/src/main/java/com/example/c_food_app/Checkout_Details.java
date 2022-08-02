@@ -43,6 +43,7 @@ public class Checkout_Details extends AppCompatActivity {
         float float_total = 0;
         Context context = this;
         Checkout checkout;
+        Globalvars globalvars;
         ArrayList<Checkout> checkout_Array;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +52,11 @@ public class Checkout_Details extends AppCompatActivity {
         init();
 //            getTown();
 
-        address.setText("Mandaug \n" +
-                        "Calape \n" +
-                        "Bohol, 6328");
+//        address.setText("Mandaug \n" +
+//                        "Calape \n" +
+//                        "Bohol, 6328");
 
+        address.setText(globalvars.get("delivery_address"));
         while (row.moveToNext()) {
             id = row.getString(0);
             cartId = row.getString(1);
@@ -96,6 +98,7 @@ public class Checkout_Details extends AppCompatActivity {
         String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
         sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
         row = sqLiteDatabase.rawQuery("select * from cart", null);
+        globalvars = new Globalvars(getApplicationContext(),this);
     }
 
 

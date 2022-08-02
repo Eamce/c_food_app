@@ -2,6 +2,7 @@ package com.example.c_food_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -104,6 +105,9 @@ public class Set_Delivery_Address extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             globalvars.set("delivery_address",address.getText().toString());
+                Intent intent = new Intent(Set_Delivery_Address.this,Checkout_Details.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

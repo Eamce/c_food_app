@@ -90,11 +90,9 @@ public class Home extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_main_setting) {
-            Toast.makeText(this, "ADASDADADAD", Toast.LENGTH_SHORT).show();
         } else if (item.getItemId() == R.id.menu_main_cart) {
             Intent cart = new Intent(this, My_Account.class);
             startActivity(cart);
-            Toast.makeText(this, "SSFJGFGFDG", Toast.LENGTH_SHORT).show();
         }else if(item.getItemId()==R.id.logout){
             Intent logout = new Intent(this, Login.class);
             startActivity(logout);

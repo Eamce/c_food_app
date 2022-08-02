@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group>
         <item
+            android:id="@+id/logout"
+            app:showAsAction="always"
+            android:icon="@drawable/cart_icon"
+            android:title="Log " />
+        <item
             android:id="@+id/menu_main_cart"
-            android:title="My Account" />
+            app:showAsAction="always"
+            android:icon="@drawable/person"
+            android:title="" />
         <item
             android:id="@+id/menu_main_setting"
             android:title="Setting" />
-        <item
-            android:id="@+id/logout"
-            android:title="Log out" />
 
     </group>
 
