@@ -137,6 +137,7 @@ public class View_Cart extends AppCompatActivity {
         sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
         order_btn = (Button) findViewById(R.id.order_btn);
         cart_list = new ArrayList<Cart>();
+        msgbox = new Msgbox(context);
         globalvars = new Globalvars(getApplicationContext(), this);
         row = sqLiteDatabase.rawQuery("select * from cart", null);
         msgbox = new Msgbox(context);
@@ -155,7 +156,6 @@ public class View_Cart extends AppCompatActivity {
                 msgtoaster("Successfully removed.");
                 refreshList();
             }
-
             @Override
             public void onno() {
             }
@@ -213,7 +213,6 @@ public class View_Cart extends AppCompatActivity {
                         }
                     });
                     builder.show();
-//
                     return false;
                 }
             });
@@ -228,15 +227,22 @@ public class View_Cart extends AppCompatActivity {
         @Override
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             if (item.getItemId() == R.id.menu_main_setting) {
-                Toast.makeText(this, "ADASDADADAD", Toast.LENGTH_SHORT).show();
-            } else if (item.getItemId() == R.id.menu_main_cart) {
-                Intent cart = new Intent(this, My_Account.class);
-                startActivity(cart);
-                Toast.makeText(this, "SSFJGFGFDG", Toast.LENGTH_SHORT).show();
-            }else if(item.getItemId()==R.id.logout){
-                Intent logout = new Intent(this, Login.class);
-                startActivity(logout);
-                globalvars.logout();
+            } else if(item.getItemId()==R.id.logout){
+                msgbox.showyesno( "Hello","Are you sure you want to log out?");
+                msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                    @Override
+                    public void onyes() {
+                        Intent logout = new Intent(View_Cart.this, Login.class);
+                        startActivity(logout);
+                        globalvars.logout();
+                    }
+                    @Override
+                    public void onno() {
+                    }
+                });
+            }else if(item.getItemId()==R.id.account){
+                Intent intent = new Intent(View_Cart.this, My_Account.class);
+                startActivity(intent);
             }
             return super.onOptionsItemSelected(item);
         }

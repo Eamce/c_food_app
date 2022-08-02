@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -30,11 +31,14 @@ import java.util.ArrayList;
 public class Home extends AppCompatActivity {
     Ajax ajax;
     Globalvars globalvars;
+    Msgbox msgbox;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ajax = new Ajax();
+        msgbox = new Msgbox(context);
         GridView category_view;
         ArrayList<Category> categoryArrayList = new ArrayList<Category>();
         category_view = (GridView) findViewById(R.id.grid_categories);
@@ -65,18 +69,13 @@ public class Home extends AppCompatActivity {
         //  int[] images={R.drawable.shrimp,R.drawable.crabs,R.drawable.fish,R.drawable.squid,R.drawable.lobster,R.drawable.lobster,R.drawable.clamps,R.drawable.clamps};
         String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso"};
         String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00"};
-//        String[] str_images={str_shrimp,str_scrabs,str_fish,str_squid,str_lobster,str_clamps,str_guso};
         Category_Adapter adapter = new Category_Adapter(getApplicationContext(), images, description, price, this);
         category_view.setAdapter(adapter);
-//        saveItems(description,price,str_images);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, View_Cart.class);
                 startActivity(intent);
-//                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
     }
@@ -90,13 +89,23 @@ public class Home extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_main_setting) {
-        } else if (item.getItemId() == R.id.menu_main_cart) {
-            Intent cart = new Intent(this, My_Account.class);
-            startActivity(cart);
-        }else if(item.getItemId()==R.id.logout){
-            Intent logout = new Intent(this, Login.class);
-            startActivity(logout);
-            globalvars.logout();
+        } else if(item.getItemId()==R.id.logout){
+            msgbox.showyesno( "Hello","Are you sure you want to log out?");
+            msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                @Override
+                public void onyes() {
+                    Intent logout = new Intent(Home.this, Login.class);
+                    startActivity(logout);
+                    finish();
+                    globalvars.logout();
+                }
+                @Override
+                public void onno() {
+                }
+            });
+        }else if(item.getItemId()==R.id.account){
+            Intent intent = new Intent(Home.this, My_Account.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

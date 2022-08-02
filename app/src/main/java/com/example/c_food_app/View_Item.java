@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,7 +33,8 @@ public class View_Item extends AppCompatActivity {
     byte[] decodedString;
     Bitmap decodedByte;
     int quan=0;
-
+    Msgbox msgbox;
+    Context context = this;
     double total_amt= 0,price_amt=0;
     ContentValues cv;
     SQLiteDatabase sqLiteDatabase ;
@@ -86,6 +88,8 @@ public class View_Item extends AppCompatActivity {
                     });
     }
 
+
+
         public void init(){
             Intent intent  = getIntent(); // get Intent which we set from Previous Activity
             imageView      = findViewById(R.id.imageView);
@@ -106,6 +110,7 @@ public class View_Item extends AppCompatActivity {
             price_amt      = Double.parseDouble(pri);
             decodedString  = Base64.decode(image, Base64.DEFAULT);
             cv             = new ContentValues();
+            msgbox = new Msgbox(context);
             String path    = getApplicationContext().getDatabasePath("cfood.db").getPath();
             sqLiteDatabase = openOrCreateDatabase(path,MODE_PRIVATE,null);
             decodedByte    = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -124,15 +129,22 @@ public class View_Item extends AppCompatActivity {
         @Override
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             if (item.getItemId() == R.id.menu_main_setting) {
-                Toast.makeText(this, "ADASDADADAD", Toast.LENGTH_SHORT).show();
-            } else if (item.getItemId() == R.id.menu_main_cart) {
-                Intent cart = new Intent(this, My_Account.class);
-                startActivity(cart);
-                Toast.makeText(this, "SSFJGFGFDG", Toast.LENGTH_SHORT).show();
-            }else if(item.getItemId()==R.id.logout){
-                Intent logout = new Intent(this, Login.class);
-                startActivity(logout);
-                globalvars.logout();
+            } else if(item.getItemId()==R.id.logout){
+                msgbox.showyesno( "Hello","Are you sure you want to log out?");
+                msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                    @Override
+                    public void onyes() {
+                        Intent logout = new Intent(View_Item.this, Login.class);
+                        startActivity(logout);
+                        globalvars.logout();
+                    }
+                    @Override
+                    public void onno() {
+                    }
+                });
+            }else if(item.getItemId()==R.id.account){
+                Intent intent = new Intent(View_Item.this, My_Account.class);
+                startActivity(intent);
             }
             return super.onOptionsItemSelected(item);
         }

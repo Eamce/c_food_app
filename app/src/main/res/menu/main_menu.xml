@@ -2,21 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group>
+
         <item
             android:id="@+id/logout"
             app:showAsAction="always"
-            android:icon="@drawable/cart_icon"
-            android:title="Log " />
-        <item
-            android:id="@+id/menu_main_cart"
-            app:showAsAction="always"
-            android:icon="@drawable/person"
+            android:icon="@drawable/logout"
             android:title="" />
         <item
             android:id="@+id/menu_main_setting"
             android:title="Setting" />
-
-    </group>
+        <item
+            android:id="@+id/account"
+            app:showAsAction="always"
+            android:icon="@drawable/person"
+            android:title="" />
 
 </menu>

@@ -45,17 +45,14 @@ public class Checkout_Adapter extends ArrayAdapter<Checkout> {
     public Checkout getItem(int position) {
         return super.getItem(position);
     }
-
     @Override
     public int getPosition(@Nullable Checkout item) {
         return super.getPosition(item);
     }
-
     @Override
     public long getItemId(int position) {
         return super.getItemId(position);
     }
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -86,6 +83,5 @@ public class Checkout_Adapter extends ArrayAdapter<Checkout> {
         total.setText("Total: "+checkout.getTotal());
         quantity.setText("Quantity: "+checkout.getQuantity());
         return cart_view;
-
     }
 }

@@ -3,6 +3,7 @@ package com.example.c_food_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,8 @@ public class My_Account extends AppCompatActivity {
     Globalvars globalvars;
     EditText fname,contact,email,pass;
     String str_name,str_contact,str_email,str_pass;
+    Msgbox msgbox;
+    Context context =this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +35,22 @@ public class My_Account extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_main_setting) {
-            Toast.makeText(this, "ADASDADADAD", Toast.LENGTH_SHORT).show();
-        }else if (item.getItemId() == R.id.menu_main_cart) {
-            Intent cart = new Intent(this, My_Account.class);
-            startActivity(cart);
-            Toast.makeText(this, "SSFJGFGFDG", Toast.LENGTH_SHORT).show();
-        }else if(item.getItemId()==R.id.logout){
-            Intent logout = new Intent(this, Login.class);
-            startActivity(logout);
-            globalvars.logout();
+        } else if(item.getItemId()==R.id.logout){
+            msgbox.showyesno( "Hello","Are you sure you want to log out?");
+            msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                @Override
+                public void onyes() {
+                    Intent logout = new Intent(My_Account.this, Login.class);
+                    startActivity(logout);
+                    globalvars.logout();
+                }
+                @Override
+                public void onno() {
+                }
+            });
+        }else if(item.getItemId()==R.id.account){
+            Intent intent = new Intent(My_Account.this, My_Account.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -51,6 +61,7 @@ public class My_Account extends AppCompatActivity {
         contact = (EditText) findViewById(R.id.contact);
         email = (EditText) findViewById(R.id.emailadd);
         pass = (EditText) findViewById(R.id.password_r);
+        msgbox= new Msgbox(context);
     }
 
     public void getGlobalVars(){

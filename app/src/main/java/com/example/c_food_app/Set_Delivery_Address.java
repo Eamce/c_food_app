@@ -1,11 +1,15 @@
 package com.example.c_food_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +29,8 @@ public class Set_Delivery_Address extends AppCompatActivity {
     String[] tw1,tw2,tw3,tw4,tw5,tw6,tw7,tw8,tw9,tw10;
     Spinner town_spinner;
     SQLiteDatabase sqLiteDatabase;
+    Msgbox msgbox;
+    Context context = this;
     Spinner town_barangay;
     Globalvars globalvars;
     Button submit_btn;
@@ -111,8 +117,36 @@ public class Set_Delivery_Address extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_main_setting) {
+        } else if(item.getItemId()==R.id.logout){
+            msgbox.showyesno( "Hello","Are you sure you want to log out?");
+            msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                @Override
+                public void onyes() {
+                    Intent logout = new Intent(Set_Delivery_Address.this, Login.class);
+                    startActivity(logout);
+                    globalvars.logout();
+                }
+                @Override
+                public void onno() {
+                }
+            });
+        }else if(item.getItemId()==R.id.account){
+            Intent intent = new Intent(Set_Delivery_Address.this, My_Account.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
     public void init(){
+        msgbox = new Msgbox(context);
         town_spinner = (Spinner) findViewById(R.id.town_spinner);
         town_barangay = (Spinner) findViewById(R.id.town_barangay);
         town_province = (Spinner) findViewById(R.id.town_province);
