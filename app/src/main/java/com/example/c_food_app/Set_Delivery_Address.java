@@ -2,34 +2,199 @@ package com.example.c_food_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Set_Delivery_Address extends AppCompatActivity {
     String[] town_name;
     String[] zipcode;
     String[] town_status;
     String[] barangay;
+    String[] province=new String[]{"Select Province","Bohol"};
+    String[] tw1,tw2,tw3,tw4,tw5,tw6,tw7,tw8,tw9,tw10;
     Spinner town_spinner;
+    SQLiteDatabase sqLiteDatabase;
     Spinner town_barangay;
+    Globalvars globalvars;
+    Button submit_btn;
     Spinner town_province;
+    ArrayAdapter<String> tw1_adapter,tw2_adapter,tw3_adapter,tw4_adapter,tw5_adapter,tw6_adapter,tw7_adapter,tw8_adapter,tw9_adapter;
+    TextView address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_delivery_address);
+        init();
+        ArrayAdapter<String> townAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, town_name);
+        townAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> provinceAdapater = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, province);
+        provinceAdapater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        town_province.setAdapter(provinceAdapater);
+        town_province.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(town_province.getSelectedItemId()==1){
+                    town_spinner.setAdapter(townAdapter);
+                }
+                address.setText(town_province.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        town_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                System.out.println("getSelectedItemId"+town_spinner.getSelectedItemId());
+                if(town_spinner.getSelectedItemId()==1){
+                    town_barangay.setAdapter(tw1_adapter);
+                }else if(town_spinner.getSelectedItemId()==2){
+                    town_barangay.setAdapter(tw2_adapter);
+                }else if(town_spinner.getSelectedItemId()==3){
+                    town_barangay.setAdapter(tw3_adapter);
+                }else if(town_spinner.getSelectedItemId()==4){
+                    town_barangay.setAdapter(tw4_adapter);
+                }else if(town_spinner.getSelectedItemId()==5){
+                    town_barangay.setAdapter(tw5_adapter);
+                }else if(town_spinner.getSelectedItemId()==6){
+                    town_barangay.setAdapter(tw6_adapter);
+                }else if(town_spinner.getSelectedItemId()==7){
+                    town_barangay.setAdapter(tw7_adapter);
+                }else if(town_spinner.getSelectedItemId()==8){
+                    town_barangay.setAdapter(tw8_adapter);
+                }else if(town_spinner.getSelectedItemId()==9){
+                    town_barangay.setAdapter(tw9_adapter);
+                }
+                address.setText(town_province.getSelectedItem().toString().trim()+"\n"
+                                    +town_spinner.getSelectedItem().toString().trim());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        town_barangay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                address.setText(town_province.getSelectedItem().toString().trim()+"\n"
+                        +town_spinner.getSelectedItem().toString().trim()+"\n"
+                        +town_barangay.getSelectedItem().toString().trim());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        submit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            globalvars.set("delivery_address",address.getText().toString());
+            }
+        });
+    }
+
+    public void init(){
         town_spinner = (Spinner) findViewById(R.id.town_spinner);
         town_barangay = (Spinner) findViewById(R.id.town_barangay);
         town_province = (Spinner) findViewById(R.id.town_province);
+        address = (TextView) findViewById(R.id.address);
+        submit_btn=(Button) findViewById(R.id.submit_btn);
+        String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
+        sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
+        globalvars = new Globalvars(getApplicationContext(),this);
         town_data();
-        ArrayAdapter<String> townAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, town_name);
-        townAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        town_spinner.setAdapter(townAdapter);
+        tw1_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw1);
+        tw1_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw2_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw2);
+        tw2_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw3_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw3);
+        tw3_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw4_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw4);
+        tw4_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw5_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw5);
+        tw5_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw6_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw6);
+        tw6_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw7_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw7);
+        tw7_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw8_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw8);
+        tw8_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw9_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw9);
+        tw9_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
-
-
+    public List<String> getTown(){
+        List<String> town = new ArrayList<String>();
+        /*
+                Cursor  row = sqLiteDatabase.query("towns","town_name","status = '1' ",null,null,null);
+         */
+        String one="1";
+        Cursor  row = sqLiteDatabase.rawQuery("Select town_name from towns where status ="+one+" ",null);
+        System.out.println("sdfsdfsdfsdf"+row);
+        if (row.moveToFirst()) {
+            do {
+                town.add(row.getString(1));//adding 2nd column data
+            } while (row.moveToNext());
+        }
+//        while (row.moveToNext()){
+//            town.add(row.getString(1));
+//        }
+        return town;
+    }
     public void town_data(){
+        tw1=new String[]{"Select Barangay", "Bahi", "Basacdacu", "Cantinguib", "Dangay", "East Poblacion", "San Agustin", "Santa Felomina", "Tagbuane", "Toril", "West Poblacion"};
+        tw2=new String[]{"Select Barangay","Cayacay","Del Monte","Katipunan","La Hacienda","Mahayag","Napo","Poblacion", "Cabatang", "Cagongcagong", "Cambaol", "Pagahat", "Progreso", "Putlongcam", "Sudlon(Omhor)", "Untaga"};
+        tw3=new String[]{"Select Barangay","Almaria", "Bacong\n","Badiang\n","BuenaSuerte\n", "Candabong\n","Casica\n","Katipunan\n","Linawan\n","Lundag\n","Poblacion\n","Suba\n","Talisay\n","Tanod\n","Tawid\n","Virgen\n","Santa Cruz"};
+        tw4=new String[]{"Select Barangay","Angilan", "Bantolinao", "Bicahan", "Bitaugan ", "Bungahan", "Canlaas", "Cansibuan", "Can-omay", "Ceiling", "Danao ", "Danicop", "Mag-aso", "Poblacion", "Quinapon-an", "Santo Rosario ", "Tabuan", "Tagubaas", "Tupas", "Obujan", "Viga ", "Villa Aurora"};
+        tw5=new String[]{"Select Barangay","Payahan",  "Cambanac" ,  "Dasitam" ,  "Buenaventura" ,  "Guiwanon" ,  "Landican" ,  "Laya " ,  "Libertad" ,  "MontaÃ±a" ,  "Pamilacan" ,  "Poblacion" ,  "San Isidro " ,  "San Roque" ,  "San Vicente" ,  "Santa Cruz" ,  "Taguihon" ,  "Tanday "};
+        tw6=new String[]{"Select Barangay","Baucan Norte", "Baucan Sur" , "Boctol" , "Boyog Norte " , "Boyog Proper" , "Boyog Sur" , "Cabad" , "Candasig" , "Cantalid " , "Cantomimbo" , "Cogon" , "Datag Norte" , "Datag Sur" , "Del Carmen Este (Pob.) " , "Del Carmen Norte (Pob.)" , "Del Carmen Weste (Pob.)" , "Del Carmen Sur (Pob.)" , "Del Rosario" , "Dorol " , "Haguilanan Grande" , "Hanopol Este" , "Hanopol Norte" , "Hanopol Weste" , "Magsija" , "Maslog" , "Sagasa" , "Sal-ing" , "San Isidro" , "San Roque" , "Santo Nino" , "Tagustusan" , "Poblacion"};
+        tw7=new String[]{"Aloja", "Behind The Clouds(San Jose)" , "Cabacnitan" , "Cambacay" , "Cantigdas" , "Garcia" , "Janlud" , "Poblacion Norte" , "Poblacion Sur" , "Poblacion Vieja" , "Quezon" , "Quirino" , "Rizal" , "Rosariohan" , "Santa Cruz"};
+        tw8=new String[]{"Bilangbilangan Dako", "Bilangbilangan Diot ", "Hingotanan East ", "Hingotanan West", "Liberty", "Malingin", "Mandawa", "Maomawan", "Nueva Esperanza      ", "Nueva Estrella   ", "Pinamgo     ", "Poblacion (Bien Unido Proper", "Puerto San Pedro (Lawis)  ", "Sagasa   ", "Tuboran"};
+        tw9=new String[]{"Bonifacio", "Bugang Norte" , "Bugang Sur" , "Cabacnitan" , "Cambigsi" , "Campagao" , "Cansumbol" , "Dagohoy" , "Owac " , "Poblacion" , "Quezon" , "Riverside" , "Rizal" , "Roxas" , "Subayon" , "Villa Aurora" , "Villa Suerte" , "Yanaya" , "Zamora"};
+        tw10=new String[]{""};
+        tw10=new String[]{""};
+        tw10=new String[]{""};
+        tw10=new String[]{""};
+        tw10=new String[]{""};
+        tw10=new String[]{""};
+        tw10=new String[]{""};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         town_name= new String[]{"Select Town","Alburquerque", "Alicia", "Anda", "Antequera", "Baclayon", "Balilihan", "Batuan", "Bien Unido", "Bilar", "Buenavista",
                 "Calape", "Candijay", "Carlos P. Garica", "Carmen", "Catigbian", "Clarin", "Corella", "Cortes", "Dagohoy", "Danao", "Dauis", "Dimiao", "Duero", "Garcia Hernandez", "Guindulman",
                 "Inabanga", "Jagna" , "Getafe", "Lila", "Loay", "Loboc", "Loon" , "Mabini" , "Maribojoc" , "Panglao" , "Pilar" , "Sagbayan", "San Isidro", "San Miguel","Sevilla", "Sierra Bullones", "Sikatuna",

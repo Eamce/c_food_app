@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         sqLiteDatabase = openOrCreateDatabase("cfood.db", MODE_PRIVATE,null);
         //  sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase("cfood.db",MODE_PRIVATE,null);
         globalvars = new Globalvars(getApplicationContext(),this);
-        town_data();
         createSqliteDatabase();
+        town_data();
         insert_town();
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
@@ -122,10 +122,13 @@ public class MainActivity extends AppCompatActivity {
                 "zipcode TEXT,"+
                 "status TEXT)");
 
+
+
 //        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS tbl_order(id INTEGER PRIMARY KEY,"+")");
     }
 
         public void insert_town(){
+            sqLiteDatabase.rawQuery("DELETE FROM towns",null);
             ContentValues cv = new ContentValues();
             for(int count=0; count<town_name.length;count++){
                 cv.put("town_name",town_name[count]);

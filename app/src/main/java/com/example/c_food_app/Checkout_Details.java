@@ -98,16 +98,7 @@ public class Checkout_Details extends AppCompatActivity {
         row = sqLiteDatabase.rawQuery("select * from cart", null);
     }
 
-    public List<String> getTown(){
-        List<String> town = new ArrayList<String>();
-        Cursor row=null;
-        row = sqLiteDatabase.rawQuery("Select town_name from towns where status = '1'",null);
-        System.out.println("sdfsdfsdfsdf"+row);
-            while (row.moveToNext()){
-                town.add(row.getString(1));
-        }
-        return town;
-    }
+
 }
 
 

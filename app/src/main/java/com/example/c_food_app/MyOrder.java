@@ -20,6 +20,5 @@ public class MyOrder extends AppCompatActivity {
     public void init(){
         address = (TextView) findViewById(R.id.address);
         order_list = (ListView) findViewById(R.id.order_list);
-
     }
 }
