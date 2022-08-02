@@ -114,13 +114,13 @@ public class View_Cart extends AppCompatActivity {
                 msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
                     @Override
                     public void onyes() {
-                        if(globalvars.get("delivery_address").isEmpty()){
-
-                        }else {
+//                        if(globalvars.get("delivery_address").isEmpty()){
+//                            Intent intent = new Intent(View_Cart.this, Set_Delivery_Address.class);
+//                            startActivity(intent);
+//                        }else {
                             Intent intent = new Intent(View_Cart.this, Checkout_Details.class);
                             startActivity(intent);
-                        }
-
+//                        }
                     }
                     @Override
                     public void onno() {

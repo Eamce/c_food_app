@@ -11,11 +11,15 @@ public class Set_Delivery_Address extends AppCompatActivity {
     String[] zipcode;
     String[] town_status;
     Spinner town_spinner;
+    Spinner town_barangay;
+    Spinner town_province;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_delivery_address);
         town_spinner = (Spinner) findViewById(R.id.town_spinner);
+        town_barangay = (Spinner) findViewById(R.id.town_barangay);
+        town_province = (Spinner) findViewById(R.id.town_province);
         town_data();
         ArrayAdapter<String> townAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, town_name);
         townAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -30,7 +34,8 @@ public class Set_Delivery_Address extends AppCompatActivity {
         zipcode=new String[]{"6302", "6314", "6311", "6335", "6301", "6342", "6318", "6326", "6317", "6333", "6328", "6312", "6346", "6319",
                 "6343", "6330", "6337", "6341", "6322", "6344", "6339", "6305", "6309", "6307", "6310", "6332", "6308", "6334", "6304", "6303",
                 "6316", "6327", "6313", "6336", "6340", "6321", "6331", "6345", "6323", "6347", "6320", "6338", "6300", "6325", "6325", "6324", "6329", "6315", "6306"};
-        town_status = new String[]{"1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
-                "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "1", "1", "1", "1", "1"};
+
+        //        town_status = new String[]{"1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+//                "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "1", "1", "1", "1", "1"};
     }
 }
