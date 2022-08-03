@@ -3,6 +3,7 @@ package com.example.c_food_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -82,6 +83,16 @@ public class Checkout_Details extends AppCompatActivity {
             checkout_Array.add(new Checkout(id, decodedByte, descrption, price, total, quantity));
             Checkout_Adapter checkout_adapter = new Checkout_Adapter(getApplicationContext(), checkout_Array, this);
             checkout_list.setAdapter(checkout_adapter);
+            ContentValues cv = new ContentValues();
+            cv.put("description",descrption);
+            cv.put("price",price);
+            cv.put("quantity",quantity);
+            cv.put("address",address.getText().toString());
+            cv.put("username",globalvars.get("name"));
+            cv.put("cat_image",image);
+            cv.put("total",total_payable);
+            cv.put("contact",globalvars.get("contact"));
+            sqLiteDatabase.insert("tbl_order",null,cv);
         }
         checkout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +101,34 @@ public class Checkout_Details extends AppCompatActivity {
                 msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
                     @Override
                     public void onyes() {
+//                        while (row.moveToNext()) {
+//                            id = row.getString(0);
+//                            cartId = row.getString(1);
+//                            descrption = row.getString(2);
+//                            price = row.getString(3);
+//                            quantity = row.getString(4);
+//                            total = row.getString(5);
+//                            image = row.getString(6);
+//                            byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+//                            float_total = Float.parseFloat(total);
+//                            total_payable += float_total;
+//                            System.out.println("Rowww" + row.getCount());
+//                            System.out.println("total_: " + total);
+//                            System.out.println("total_payable: " + total_payable);
+//                            text_total.setText("Total: " + total_payable);
+//
+                            sqLiteDatabase.execSQL("Delete from cart",null);
+                            /*
+                 tbl_order(id INTEGER PRIMARY KEY,"+
+                "description TEXT,"+
+                "price TEXT,"+
+                "quantity TEXT,"+
+                "total TEXT,"+
+                "username TEXT,"+
+                "address TEXT,"+
+                "cat_image TEXT)");
+//                             */
+//                        }
                         Intent intent = new Intent(Checkout_Details.this, MyOrder.class);
                         startActivity(intent);
                         finish();

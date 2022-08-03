@@ -35,9 +35,6 @@
             android:name=".View_Item"
             android:exported="false" />
         <activity
-            android:name=".Cart_Adapter"
-            android:exported="false" />
-        <activity
             android:name=".Home"
             android:exported="false" />
         <activity
@@ -51,10 +48,8 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

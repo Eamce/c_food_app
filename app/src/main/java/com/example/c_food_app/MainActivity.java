@@ -106,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
                 "price TEXT,"+
                 "quantity TEXT,"+
                 "total TEXT,"+
+                "username TEXT,"+
+                "address TEXT,"+
+                "contact TEXT,"+
                 "cat_image TEXT)");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS tbl_sub_order(id INTEGER PRIMARY KEY,"+
                 "customer_name TEXT,"+
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 "name TEXT,"+
                 "phone TEXT,"+
                 "password TEXT)");
+
 
 
 //        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS tbl_order(id INTEGER PRIMARY KEY,"+")");
