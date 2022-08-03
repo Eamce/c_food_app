@@ -18,6 +18,7 @@
         android:theme="@style/Theme.C_food_app">
         <activity
             android:name=".MyOrder"
+            android:label="Order Details"
             android:exported="false" />
         <activity
             android:name=".Set_Delivery_Address"
@@ -27,6 +28,7 @@
             android:exported="false" />
         <activity
             android:name=".View_Cart"
+            android:label="My Cart"
             android:exported="false" />
         <activity
             android:name=".My_Account"
@@ -36,12 +38,14 @@
             android:exported="false" />
         <activity
             android:name=".Home"
+            android:label="Home"
             android:exported="false" />
         <activity
             android:name=".CreateAccount"
             android:exported="false" />
         <activity
             android:name=".Login"
+            android:label="Log in"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

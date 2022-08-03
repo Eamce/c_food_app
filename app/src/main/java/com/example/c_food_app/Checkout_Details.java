@@ -117,7 +117,7 @@ public class Checkout_Details extends AppCompatActivity {
 //                            System.out.println("total_payable: " + total_payable);
 //                            text_total.setText("Total: " + total_payable);
 //
-                            sqLiteDatabase.execSQL("Delete from cart",null);
+                            sqLiteDatabase.rawQuery("Delete from cart",null);
                             /*
                  tbl_order(id INTEGER PRIMARY KEY,"+
                 "description TEXT,"+

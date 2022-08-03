@@ -29,6 +29,7 @@ public class MyOrder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_order);
+        init();
         Cursor row = sqLiteDatabase.rawQuery("Select * from tbl_order",null);
         while(row.moveToNext()){
             id          = row.getString(0);
@@ -46,7 +47,6 @@ public class MyOrder extends AppCompatActivity {
             My_Order_Adapter my_order_adapter = new My_Order_Adapter (getApplicationContext(),my_order,this);
             order_list.setAdapter(my_order_adapter);
         }
-
     }
 
     public void init(){
@@ -56,5 +56,6 @@ public class MyOrder extends AppCompatActivity {
         address    = (TextView) findViewById(R.id.address);
         msgbox = new Msgbox(context);
         order_list = (ListView) findViewById(R.id.order_list);
+        my_order = new ArrayList<My_Order_Class>();
     }
 }

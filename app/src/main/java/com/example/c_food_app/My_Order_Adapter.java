@@ -77,7 +77,7 @@ public class My_Order_Adapter extends ArrayAdapter<My_Order_Class> {
 //        ImageView delete_btn= (ImageView) cart_view.findViewById(R.id.delete_btn);
 //        CheckBox checkBox   = (CheckBox)  cart_view.findViewById(R.id.checkBox);
 //        Button order_btn =(Button) total_view.findViewById(R.id.order_btn);
-        imageView.setImageBitmap(my_order_class.getImg_bitmap());
+        imageView.setImageBitmap(my_order_class.getCat_image());
         desc.setText("Description: "+my_order_class.getDescription());
         price.setText(" Price: "+my_order_class.getPrice());
         total.setText("Total: "+my_order_class.getTotal());
