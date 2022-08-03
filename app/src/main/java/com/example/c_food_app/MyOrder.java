@@ -20,13 +20,14 @@ import java.util.ArrayList;
 
 public class MyOrder extends AppCompatActivity {
 
-    TextView address;
+    TextView userinfo;
     ListView order_list;
     SQLiteDatabase sqLiteDatabase;
     Globalvars globalvars;
     Msgbox msgbox;
     Context context= this;
     String id, description,price,quantity,total,username,str_address,cat_image,contact;
+    String e_user;
     ArrayList<My_Order_Class> my_order;
 
     @Override
@@ -35,6 +36,7 @@ public class MyOrder extends AppCompatActivity {
         setContentView(R.layout.activity_my_order);
         init();
         Cursor row = sqLiteDatabase.rawQuery("Select * from tbl_order",null);
+
         while(row.moveToNext()){
             id          = row.getString(0);
             description = row.getString(1);
@@ -47,9 +49,12 @@ public class MyOrder extends AppCompatActivity {
             cat_image   = row.getString(8);
             byte[] decodedString = Base64.decode(cat_image, Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            e_user = AES.decrypt(Server.key,username).toString();
+            userinfo.setText(e_user+"\n"+contact+"\n"+str_address);
             my_order.add(new My_Order_Class(id, description,price,quantity,total,username,str_address,decodedByte,contact));
             My_Order_Adapter my_order_adapter = new My_Order_Adapter (getApplicationContext(),my_order,this);
             order_list.setAdapter(my_order_adapter);
+
         }
     }
 
@@ -57,7 +62,7 @@ public class MyOrder extends AppCompatActivity {
         String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
         sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
         globalvars = new Globalvars(getApplicationContext(),this);
-        address    = (TextView) findViewById(R.id.address);
+        userinfo    = (TextView) findViewById(R.id.userinfo);
         msgbox = new Msgbox(context);
         order_list = (ListView) findViewById(R.id.order_list);
         my_order = new ArrayList<My_Order_Class>();

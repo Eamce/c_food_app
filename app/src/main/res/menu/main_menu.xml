@@ -12,6 +12,9 @@
             android:id="@+id/menu_main_setting"
             android:title="Setting" />
         <item
+            android:id="@+id/my_order"
+            android:title="View Purchased" />
+        <item
             android:id="@+id/account"
             app:showAsAction="always"
             android:icon="@drawable/person"

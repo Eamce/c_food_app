@@ -100,6 +100,9 @@ public class Home extends AppCompatActivity {
         }else if(item.getItemId()==R.id.account){
             Intent intent = new Intent(Home.this, My_Account.class);
             startActivity(intent);
+        }else if(item.getItemId()==R.id.my_order){
+            Intent intent = new Intent(Home.this, MyOrder.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
