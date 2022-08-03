@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 animationView=(LottieAnimationView) findViewById(R.id.animationView);
                 // Custom animation speed or duration.
                 ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
@@ -48,18 +47,18 @@ public class MainActivity extends AppCompatActivity {
                 animationView.addAnimatorUpdateListener((animation) -> {
                     // Do something.
                     if (isConnected()) {
-                        Intent intent = new Intent(MainActivity.this, Home.class);
-                        startActivity(intent);
-                        finish();
-//                        if(globalvars.get("id").isEmpty()){
-//                            Intent intent = new Intent(MainActivity.this, Login.class);
-//                            startActivity(intent);
-//                            finish();
-//                        }else{
-//                            Intent intent = new Intent(MainActivity.this, Home.class);
-//                            startActivity(intent);
-//                            finish();
-//                        }
+//                        Intent intent = new Intent(MainActivity.this, Home.class);
+//                        startActivity(intent);
+//                        finish();
+                        if(globalvars.get("id").isEmpty()){
+                            Intent intent = new Intent(MainActivity.this, Login.class);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Intent intent = new Intent(MainActivity.this, Home.class);
+                            startActivity(intent);
+                            finish();
+                        }
 
                     } else {
                         Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -121,7 +120,11 @@ public class MainActivity extends AppCompatActivity {
                 "town_name TEXT,"+
                 "zipcode TEXT,"+
                 "status TEXT)");
-
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS user(user_id INTEGER PRIMARY KEY,"+
+                "email TEXT,"+
+                "name TEXT,"+
+                "phone TEXT,"+
+                "password TEXT)");
 
 
 //        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS tbl_order(id INTEGER PRIMARY KEY,"+")");

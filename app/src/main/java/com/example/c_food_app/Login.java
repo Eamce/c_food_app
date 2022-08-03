@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -21,6 +23,7 @@ public class Login extends AppCompatActivity {
     Button loginbtn;
     Button registerbtn;
     Ajax ajax;
+    SQLiteDatabase sqLiteDatabase;
     String encrypted_user,encrypted_pass;
     ProgressDialog pd;
     String id="",name="",email="",e_password="",contact="";
@@ -55,7 +58,8 @@ public class Login extends AppCompatActivity {
         tv_createaccount = (TextView) findViewById(R.id.tv_createaccount);
         loginbtn         = (Button)   findViewById(R.id.loginbtn);
         globalvars  = new Globalvars(getApplicationContext(),this);
-//        registerbtn      = (Button)   findViewById(R.id.registerbtn);
+        String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
+        sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
         pd = new ProgressDialog(this);
     }
     public void encryptData(){
@@ -71,9 +75,29 @@ public class Login extends AppCompatActivity {
         pd.show();
         pd.setCancelable(false);
         pd.setCanceledOnTouchOutside(false);
-//        System.out.println("USERNAME: "+user);
-//        System.out.println("PASSWORD: "+pass);
-        ajax = new Ajax();
+        Cursor row = sqLiteDatabase.rawQuery("select * from user where email like '%"+user+"%' and password like '%"+pass+"%'", null);
+        if(row.getCount()!=0){
+            while (row.moveToNext()){
+               id = row.getString(0);
+               email = row.getString(1);
+               name = row.getString(2);
+               contact = row.getString(3);
+               e_password = row.getString(4);
+            }
+            globalvars.set("id",id);
+            globalvars.set("email",email);
+            globalvars.set("name",name);
+            globalvars.set("phone",contact);
+            globalvars.set("password",e_password);
+            Intent login = new Intent(Login.this,Home.class);
+            startActivity(login);
+            finish();
+        }
+    }
+}
+
+/*
+    ajax = new Ajax();
         ajax.setCustomObjectListener(new Ajax.MyCustomObjectListener()
         {
             @Override
@@ -88,7 +112,6 @@ public class Login extends AppCompatActivity {
             public void onsuccess(String data)
             {
                 JSONArray thedata;
-
                 System.out.println("ASDSFDFDGFDG DATA: " + data);
                 try
                 {
@@ -135,5 +158,4 @@ public class Login extends AppCompatActivity {
         ajax.adddata("email",user);
         ajax.adddata("password",pass);
         ajax.execute(Server.address + "validateUser");
-    }
-}
+ */

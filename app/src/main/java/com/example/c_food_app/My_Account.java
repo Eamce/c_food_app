@@ -17,6 +17,7 @@ public class My_Account extends AppCompatActivity {
     String str_name,str_contact,str_email,str_pass;
     Msgbox msgbox;
     Context context =this;
+//    AES aes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,10 +66,10 @@ public class My_Account extends AppCompatActivity {
     }
 
     public void getGlobalVars(){
-        str_name = globalvars.get("name");
-        str_contact=globalvars.get("phone");
-        str_email=globalvars.get("email");
-        str_pass=globalvars.get("password");
+        str_name =AES.decrypt(Server.key,globalvars.get("name")).toString();
+        str_contact=AES.decrypt(Server.key,globalvars.get("phone")).toString();
+        str_email=AES.decrypt(Server.key,globalvars.get("email")).toString();
+        str_pass=AES.decrypt(Server.key,globalvars.get("password")).toString();
         fname.setText(str_name);
         contact.setText(str_contact);
         email.setText(str_email);

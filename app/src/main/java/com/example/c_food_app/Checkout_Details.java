@@ -86,10 +86,18 @@ public class Checkout_Details extends AppCompatActivity {
         checkout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if(fullname.getText().toString().isEmpty() || address.getText().toString().isEmpty() ){
-//                    Toast.makeText(Checkout_Details.this, "Please fill up information!", Toast.LENGTH_SHORT).show();
-//                }else{
-//                }
+                msgbox.showyesno( "Hello","Are you sure you want to proceed?");
+                msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                    @Override
+                    public void onyes() {
+                        Intent intent = new Intent(Checkout_Details.this, MyOrder.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    @Override
+                    public void onno() {
+                    }
+                });
             }
         });
     }

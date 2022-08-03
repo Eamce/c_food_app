@@ -129,6 +129,13 @@ public class View_Cart extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshList();
+//        removePreviousDayOrder();    //Delete all orders if not equal 'now' and emp_id = "walapa"...
+//        displayemployeeitems();
+    }
 
     public void init() {
         cartList = (ListView) findViewById(R.id.list_item);
@@ -162,6 +169,12 @@ public class View_Cart extends AppCompatActivity {
         });
     }
 
+    public void confirmEdit(){
+
+
+    }
+
+
     public void msgtoaster(String msg) {
         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 80);
@@ -169,6 +182,7 @@ public class View_Cart extends AppCompatActivity {
     }
 
     public void refreshList() {
+        ListView refresh_cartList = (ListView) findViewById(R.id.list_item);
         while (row.moveToNext()) {
             cartId = row.getString(1);
             descrption = row.getString(2);
@@ -186,9 +200,9 @@ public class View_Cart extends AppCompatActivity {
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             cart_list.add(cart = new Cart(cartId, decodedByte, descrption, price, total, quantity));
             Cart_Adapter cart_adapter = new Cart_Adapter(getApplicationContext(), cart_list, this);
-            cartList.setAdapter(cart_adapter);
+            refresh_cartList.setAdapter(cart_adapter);
         }
-            cartList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        refresh_cartList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(View_Cart.this);
@@ -216,7 +230,7 @@ public class View_Cart extends AppCompatActivity {
                     return false;
                 }
             });
-
+        registerForContextMenu(cartList);
     }
 
         @Override

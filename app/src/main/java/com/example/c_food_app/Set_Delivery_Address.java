@@ -29,6 +29,7 @@ public class Set_Delivery_Address extends AppCompatActivity {
     String[] tw1,tw2,tw3,tw4,tw5,tw6,tw7,tw8,tw9,tw10;
     Spinner town_spinner;
     SQLiteDatabase sqLiteDatabase;
+    TextView otherdetails;
     Msgbox msgbox;
     Context context = this;
     Spinner town_barangay;
@@ -110,7 +111,11 @@ public class Set_Delivery_Address extends AppCompatActivity {
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            globalvars.set("delivery_address",address.getText().toString());
+                address.setText(town_province.getSelectedItem().toString().trim()+"\n"
+                        +town_spinner.getSelectedItem().toString().trim()+"\n"
+                        +town_barangay.getSelectedItem().toString().trim()+"\n"
+                        +otherdetails.getText().toString());
+                globalvars.set("delivery_address",address.getText().toString());
                 Intent intent = new Intent(Set_Delivery_Address.this,Checkout_Details.class);
                 startActivity(intent);
                 finish();
@@ -152,6 +157,7 @@ public class Set_Delivery_Address extends AppCompatActivity {
         town_province = (Spinner) findViewById(R.id.town_province);
         address = (TextView) findViewById(R.id.address);
         submit_btn=(Button) findViewById(R.id.submit_btn);
+        otherdetails = (TextView) findViewById(R.id.otherdetails);
         String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
         sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
         globalvars = new Globalvars(getApplicationContext(),this);

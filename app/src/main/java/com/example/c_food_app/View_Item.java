@@ -110,7 +110,7 @@ public class View_Item extends AppCompatActivity {
             price_amt      = Double.parseDouble(pri);
             decodedString  = Base64.decode(image, Base64.DEFAULT);
             cv             = new ContentValues();
-            msgbox = new Msgbox(context);
+            msgbox         = new Msgbox(context);
             String path    = getApplicationContext().getDatabasePath("cfood.db").getPath();
             sqLiteDatabase = openOrCreateDatabase(path,MODE_PRIVATE,null);
             decodedByte    = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
