@@ -47,9 +47,11 @@ public class View_Cart extends AppCompatActivity {
     Button order_btn;
     Cursor row=null;
     Msgbox msgbox;
-    float finalTotal_payable;
+    float finalTotal_payable=0;
     float total_payable = 0;
     float float_total = 0;
+    float f_price=0;
+    float f_quan=0;
     Context context = this;
     Cart cart;
 
@@ -68,15 +70,18 @@ public class View_Cart extends AppCompatActivity {
             image = row.getString(6);
             byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
             float_total = Float.parseFloat(total);
-            total_payable += float_total;
+            f_price=Float.parseFloat(price);
+            f_quan=Float.parseFloat(quantity);
+            finalTotal_payable=f_price*f_quan;
+            total_payable += finalTotal_payable;
+            text_total.setText("Total: " + total_payable);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            cart_list.add(cart = new Cart(id, decodedByte, descrption, price, String.valueOf(finalTotal_payable), quantity));
+            Cart_Adapter cart_adapter = new Cart_Adapter(getApplicationContext(), cart_list, this);
+            cartList.setAdapter(cart_adapter);
             System.out.println("Rowww" + row.getCount());
             System.out.println("total_: " + total);
             System.out.println("total_payable: " + total_payable);
-            text_total.setText("Total: " + total_payable);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            cart_list.add(cart = new Cart(id, decodedByte, descrption, price, total, quantity));
-            Cart_Adapter cart_adapter = new Cart_Adapter(getApplicationContext(), cart_list, this);
-            cartList.setAdapter(cart_adapter);
         }
 
             cartList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
