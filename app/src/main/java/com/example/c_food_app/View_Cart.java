@@ -5,7 +5,6 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -255,7 +254,7 @@ public class View_Cart extends AppCompatActivity {
                     }
                 });
             }else if(item.getItemId()==R.id.account){
-                Intent intent = new Intent(View_Cart.this, My_Account.class);
+                Intent intent = new Intent(View_Cart.this, Edit_My_Count.class);
                 startActivity(intent);
             }
             return super.onOptionsItemSelected(item);

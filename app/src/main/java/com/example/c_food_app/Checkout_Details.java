@@ -15,17 +15,10 @@ import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,7 +110,7 @@ public class Checkout_Details extends AppCompatActivity {
 //                            System.out.println("total_payable: " + total_payable);
 //                            text_total.setText("Total: " + total_payable);
 //
-                            sqLiteDatabase.rawQuery("Delete from cart",null);
+                            sqLiteDatabase.execSQL("Delete from cart");
                             /*
                  tbl_order(id INTEGER PRIMARY KEY,"+
                 "description TEXT,"+
@@ -178,7 +171,7 @@ public class Checkout_Details extends AppCompatActivity {
                 }
             });
         }else if(item.getItemId()==R.id.account){
-            Intent intent = new Intent(Checkout_Details.this, My_Account.class);
+            Intent intent = new Intent(Checkout_Details.this, Edit_My_Count.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

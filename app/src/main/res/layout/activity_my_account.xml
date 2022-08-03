@@ -1,58 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".My_Account">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".CreateAccount">
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            app:srcCompat="@drawable/user_icon" />
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fname"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Contact Number">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/contact"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email Address">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/emailadd"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            android:hint="Password">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:inputType="textPassword"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/password_r"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <Button
-            android:id="@+id/registerbtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Edit" />
+    tools:ignore="MissingConstraints">
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        app:srcCompat="@drawable/user_icon" />
+    <TextView
+        android:id="@+id/fname"
+        android:layout_width="match_parent"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/emailadd"
+        android:layout_width="match_parent"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/password_r"
+        android:layout_width="match_parent"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/editbtb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Edit" />
+
 </LinearLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>

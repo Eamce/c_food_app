@@ -3,10 +3,8 @@ package com.example.c_food_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -143,7 +141,7 @@ public class View_Item extends AppCompatActivity {
                     }
                 });
             }else if(item.getItemId()==R.id.account){
-                Intent intent = new Intent(View_Item.this, My_Account.class);
+                Intent intent = new Intent(View_Item.this, Edit_My_Count.class);
                 startActivity(intent);
             }
             return super.onOptionsItemSelected(item);

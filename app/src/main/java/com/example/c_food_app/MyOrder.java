@@ -1,14 +1,18 @@
 package com.example.c_food_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -57,5 +61,34 @@ public class MyOrder extends AppCompatActivity {
         msgbox = new Msgbox(context);
         order_list = (ListView) findViewById(R.id.order_list);
         my_order = new ArrayList<My_Order_Class>();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_main_setting) {
+        } else if(item.getItemId()==R.id.logout){
+            msgbox.showyesno( "Hello","Are you sure you want to log out?");
+            msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                @Override
+                public void onyes() {
+                    Intent logout = new Intent(MyOrder.this, Login.class);
+                    startActivity(logout);
+                    globalvars.logout();
+                }
+                @Override
+                public void onno() {
+                }
+            });
+        }else if(item.getItemId()==R.id.account){
+            Intent intent = new Intent(MyOrder.this, Edit_My_Count.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -3,29 +3,23 @@ package com.example.c_food_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.io.ByteArrayOutputStream;
-import java.io.SyncFailedException;
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
@@ -104,7 +98,7 @@ public class Home extends AppCompatActivity {
                 }
             });
         }else if(item.getItemId()==R.id.account){
-            Intent intent = new Intent(Home.this, My_Account.class);
+            Intent intent = new Intent(Home.this, Edit_My_Count.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
