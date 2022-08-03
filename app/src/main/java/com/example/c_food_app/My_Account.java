@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class My_Account extends AppCompatActivity {
@@ -15,8 +14,6 @@ public class My_Account extends AppCompatActivity {
     Globalvars globalvars;
     Button editbtb;
     String str_name,str_contact,str_email,str_pass;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +24,7 @@ public class My_Account extends AppCompatActivity {
         editbtb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(My_Account.this,Edit_My_Count.class);
+                Intent intent = new Intent(My_Account.this, Edit_My_Account.class);
                 startActivity(intent);
             }
         });

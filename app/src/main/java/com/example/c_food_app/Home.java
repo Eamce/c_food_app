@@ -98,7 +98,7 @@ public class Home extends AppCompatActivity {
                 }
             });
         }else if(item.getItemId()==R.id.account){
-            Intent intent = new Intent(Home.this, Edit_My_Count.class);
+            Intent intent = new Intent(Home.this, My_Account.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

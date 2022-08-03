@@ -171,7 +171,7 @@ public class Checkout_Details extends AppCompatActivity {
                 }
             });
         }else if(item.getItemId()==R.id.account){
-            Intent intent = new Intent(Checkout_Details.this, Edit_My_Count.class);
+            Intent intent = new Intent(Checkout_Details.this, Edit_My_Account.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

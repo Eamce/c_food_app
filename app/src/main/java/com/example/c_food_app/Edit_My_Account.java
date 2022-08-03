@@ -5,19 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-public class Edit_My_Count extends AppCompatActivity {
+public class Edit_My_Account extends AppCompatActivity {
     Globalvars globalvars;
     EditText fname,contact,email,pass;
     String str_name,str_contact,str_email,str_pass;
     Msgbox msgbox;
     Button editbtb;
+    SQLiteDatabase sqLiteDatabase;
     Context context =this;
 //    AES aes;
     @Override
@@ -26,12 +29,24 @@ public class Edit_My_Count extends AppCompatActivity {
         setContentView(R.layout.activity_edit_my_account);
         init();
         getGlobalVars();
-        field_disable();
-
+        field_enable();
+        String id = globalvars.get("id");
+//        field_disable();
         editbtb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                field_enable();
+                if(fieldIsEmpty()){
+                    Toast.makeText(context, "Fill Up Empty Fields!", Toast.LENGTH_SHORT).show();
+                }else{
+                    String edited_name = AES.encrypt(Server.key,fname.getText().toString()).toString();
+                    sqLiteDatabase.execSQL("UPDATE user SET name= "+edited_name+" WHERE user_id="+id+"");
+                    Toast.makeText(context, "Account Updated Successfully", Toast.LENGTH_SHORT).show();
+                    globalvars.set("name",edited_name);
+                    Intent intent = new Intent(Edit_My_Account.this, My_Account.class );
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         });
     }
@@ -50,7 +65,7 @@ public class Edit_My_Count extends AppCompatActivity {
             msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
                 @Override
                 public void onyes() {
-                    Intent logout = new Intent(Edit_My_Count.this, Login.class);
+                    Intent logout = new Intent(Edit_My_Account.this, Login.class);
                     startActivity(logout);
                     globalvars.logout();
                 }
@@ -59,13 +74,15 @@ public class Edit_My_Count extends AppCompatActivity {
                 }
             });
         }else if(item.getItemId()==R.id.account){
-            Intent intent = new Intent(Edit_My_Count.this, Edit_My_Count.class);
+            Intent intent = new Intent(Edit_My_Account.this, Edit_My_Account.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
 
     public void init(){
+        String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
+        sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
         globalvars = new Globalvars(getApplicationContext(),this);
         fname = (EditText) findViewById(R.id.fname);
         contact = (EditText) findViewById(R.id.contact);
@@ -98,5 +115,15 @@ public class Edit_My_Count extends AppCompatActivity {
         contact.setEnabled(true);
         email.setEnabled(true);
         pass.setEnabled(true);
+    }
+
+    public boolean fieldIsEmpty(){
+        if(fname.getText().toString().isEmpty() ||contact.getText().toString().isEmpty()
+                || email.getText().toString().isEmpty() || pass.getText().toString().isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }

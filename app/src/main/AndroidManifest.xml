@@ -31,7 +31,10 @@
             android:label="My Cart"
             android:exported="false" />
         <activity
-            android:name=".Edit_My_Count"
+            android:name=".Edit_My_Account"
+            android:exported="false" />
+        <activity
+            android:name=".My_Account"
             android:exported="false" />
         <activity
             android:name=".View_Item"
@@ -47,6 +50,7 @@
             android:name=".Login"
             android:label="Log in"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

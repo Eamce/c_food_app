@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Base64;
 import android.view.Gravity;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +42,7 @@ public class View_Cart extends AppCompatActivity {
     String total = "";
     String id="";
     Globalvars globalvars;
+    EditText quantity_text;
     ArrayList<Cart> cart_list;
     Button order_btn;
     Cursor row=null;
@@ -95,10 +98,25 @@ public class View_Cart extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             String strOption = arrayAdapter.getItem(i);
                             if (strOption.equalsIgnoreCase("Edit")) {
-                            } else if (strOption.equalsIgnoreCase("Delete")) {
-                                confirmRemove(String.valueOf(pos), cart.getDescription());
-//                               Toast.makeText(View_Cart.this, "DELETE BUTTON", Toast.LENGTH_SHORT).show();
+
+
+//                                Toast.makeText(View_Cart.this, "ASDSFHSDUFSDFGSD", Toast.LENGTH_SHORT).show();
+//                                confirmEdit(String.valueOf(pos));
                             }
+                            else if (strOption.equalsIgnoreCase("Delete")) {
+                                confirmRemove(String.valueOf(pos), cart.getDescription());
+//                                dialogInterface.dismiss();
+//                                confirmRemove(String.valueOf(pos), cart.getDescription());
+//                               Toast.makeText(View_Cart.this, "DELETE BUTTON", Toast.LENGTH_SHORT).show();
+                            }else{
+
+                            }
+//                            else if (strOption.equalsIgnoreCase("")) {
+//                                Toast.makeText(View_Cart.this, "ASDSFHSDUFSDFGSD", Toast.LENGTH_SHORT).show();
+////                                dialogInterface.dismiss();
+//                                confirmRemove(String.valueOf(pos), cart.getDescription());
+////                               Toast.makeText(View_Cart.this, "DELETE BUTTON", Toast.LENGTH_SHORT).show();
+//                            }
                         }
                     });
                     builder.show();
@@ -168,11 +186,45 @@ public class View_Cart extends AppCompatActivity {
         });
     }
 
-    public void confirmEdit(){
-
-
+    public void confirmEdit(String iditem){
+        AlertDialog.Builder builder = new AlertDialog.Builder(View_Cart.this);
+        builder.setIcon(R.drawable.icon_edit);
+        builder.setTitle("Are you sure you want to edit quantity?");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+                AlertDialog.Builder editBuilder = new AlertDialog.Builder(View_Cart.this);
+                builder.setTitle("Enter Quantity");
+                quantity_text = new EditText(getApplicationContext());
+                quantity_text.setInputType(InputType.TYPE_CLASS_NUMBER);
+                quantity_text.setHint("Enter Quantity");
+                editBuilder.setView(quantity_text);
+                editBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        sqLiteDatabase.execSQL("UPDATE cart set quantity="+quantity_text.getText().toString()+" where id="+iditem+"");
+                        Toast.makeText(View_Cart.this, "Success!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                editBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                AlertDialog editDialog = editBuilder.create();
+                editDialog.show();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //TODO
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialogg = builder.create();
+        dialogg.show();
     }
-
 
     public void msgtoaster(String msg) {
         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
@@ -204,6 +256,7 @@ public class View_Cart extends AppCompatActivity {
         refresh_cartList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    int pos=position+1;
                     AlertDialog.Builder builder = new AlertDialog.Builder(View_Cart.this);
                     final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(View_Cart.this, android.R.layout.simple_list_item_1);
                     arrayAdapter.add("Edit");
@@ -219,6 +272,8 @@ public class View_Cart extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             String strOption = arrayAdapter.getItem(i);
                             if (strOption.equalsIgnoreCase("Edit")) {
+                                Toast.makeText(View_Cart.this, "ASDSFHSDUFSDFGSD", Toast.LENGTH_SHORT).show();
+                                confirmEdit(String.valueOf(pos));
                             } else if (strOption.equalsIgnoreCase("Delete")) {
                                 confirmRemove(cart.getCart_id(), cart.getDescription());
 //                               Toast.makeText(View_Cart.this, "DELETE BUTTON", Toast.LENGTH_SHORT).show();
@@ -254,7 +309,7 @@ public class View_Cart extends AppCompatActivity {
                     }
                 });
             }else if(item.getItemId()==R.id.account){
-                Intent intent = new Intent(View_Cart.this, Edit_My_Count.class);
+                Intent intent = new Intent(View_Cart.this, Edit_My_Account.class);
                 startActivity(intent);
             }
             return super.onOptionsItemSelected(item);

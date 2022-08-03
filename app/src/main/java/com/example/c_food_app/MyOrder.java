@@ -86,7 +86,7 @@ public class MyOrder extends AppCompatActivity {
                 }
             });
         }else if(item.getItemId()==R.id.account){
-            Intent intent = new Intent(MyOrder.this, Edit_My_Count.class);
+            Intent intent = new Intent(MyOrder.this, My_Account.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
