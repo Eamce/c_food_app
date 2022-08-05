@@ -60,6 +60,7 @@ public class View_Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_cart);
         init();
+
         while (row.moveToNext()) {
             id = row.getString(0);
             cartId = row.getString(1);
@@ -136,13 +137,18 @@ public class View_Cart extends AppCompatActivity {
                 msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
                     @Override
                     public void onyes() {
-                        if(globalvars.get("delivery_address").isEmpty()){
-                            Intent intent = new Intent(View_Cart.this, Set_Delivery_Address.class);
-                            startActivity(intent);
-                        }else {
-                            Intent intent = new Intent(View_Cart.this, Checkout_Details.class);
-                            startActivity(intent);
+                        if(row.getCount()==0){
+                            order_btn.setEnabled(false);
+                        }else{
+                            if(globalvars.get("delivery_address").isEmpty()){
+                                Intent intent = new Intent(View_Cart.this, Set_Delivery_Address.class);
+                                startActivity(intent);
+                            }else {
+                                Intent intent = new Intent(View_Cart.this, Checkout_Details.class);
+                                startActivity(intent);
+                            }
                         }
+
                     }
                     @Override
                     public void onno() {

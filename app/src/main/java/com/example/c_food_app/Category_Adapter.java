@@ -66,7 +66,7 @@ public class Category_Adapter extends BaseAdapter {
         TextView price      = view.findViewById(R.id.price);
         cat_img.setImageDrawable(images[position]);
         img_desc.setText(description[position]);
-        price.setText(prices[position]);
+        price.setText("₱"+prices[position]+"/kl.");
         cat_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +86,6 @@ public class Category_Adapter extends BaseAdapter {
                         System.out.println("DESCRIPTION: " +prices[i]);
                     }
                 }
-
             }
         });
         return view;

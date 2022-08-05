@@ -45,7 +45,8 @@ public class Home extends AppCompatActivity {
         Drawable lobster = this.getResources().getDrawable(R.drawable.lobster);
         Drawable clamps = this.getResources().getDrawable(R.drawable.clamps);
         Drawable guso = this.getResources().getDrawable(R.drawable.guso);
-        Drawable[] images = {shrimp, crabs, fish, squid, lobster, clamps, guso};
+        Drawable oyster = this.getResources().getDrawable(R.drawable.oyster);
+        Drawable[] images = {shrimp, crabs, fish, squid, lobster, clamps, guso,oyster};
 //        Bitmap bit_shrimp = ((BitmapDrawable) shrimp).getBitmap();
 //        Bitmap bit_crabs = ((BitmapDrawable) crabs).getBitmap();
 //        Bitmap bit_fish = ((BitmapDrawable) fish).getBitmap();
@@ -61,8 +62,8 @@ public class Home extends AppCompatActivity {
 //        String str_clamps = getStringImage(bit_clamps);
 //        String str_guso = getStringImage(bit_guso);
         //  int[] images={R.drawable.shrimp,R.drawable.crabs,R.drawable.fish,R.drawable.squid,R.drawable.lobster,R.drawable.lobster,R.drawable.clamps,R.drawable.clamps};
-        String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso"};
-        String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00"};
+        String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso","Oyster"};
+        String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00","125"};
         Category_Adapter adapter = new Category_Adapter(getApplicationContext(), images, description, price, this);
         category_view.setAdapter(adapter);
         fab.setOnClickListener(new View.OnClickListener() {
