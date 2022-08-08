@@ -99,6 +99,9 @@ public class MyOrder extends AppCompatActivity {
         }else if(item.getItemId()==R.id.account){
             Intent intent = new Intent(MyOrder.this, My_Account.class);
             startActivity(intent);
+        }else if(item.getItemId()==R.id.home){
+            Intent intent = new Intent(MyOrder.this, Home.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

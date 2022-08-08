@@ -147,6 +147,9 @@ public class Set_Delivery_Address extends AppCompatActivity {
         }else if(item.getItemId()==R.id.account){
             Intent intent = new Intent(Set_Delivery_Address.this, Edit_My_Account.class);
             startActivity(intent);
+        }else if(item.getItemId()==R.id.home){
+            Intent intent = new Intent(Set_Delivery_Address.this, Home.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

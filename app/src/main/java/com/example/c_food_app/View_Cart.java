@@ -324,6 +324,9 @@ public class View_Cart extends AppCompatActivity {
             }else if(item.getItemId()==R.id.account){
                 Intent intent = new Intent(View_Cart.this, Edit_My_Account.class);
                 startActivity(intent);
+            }else if(item.getItemId()==R.id.home){
+                Intent intent = new Intent(View_Cart.this, Home.class);
+                startActivity(intent);
             }
             return super.onOptionsItemSelected(item);
         }

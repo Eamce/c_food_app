@@ -51,35 +51,6 @@ public class Edit_My_Account extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menu_main_setting) {
-        } else if(item.getItemId()==R.id.logout){
-            msgbox.showyesno( "Hello","Are you sure you want to log out?");
-            msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
-                @Override
-                public void onyes() {
-                    Intent logout = new Intent(Edit_My_Account.this, Login.class);
-                    startActivity(logout);
-                    globalvars.logout();
-                }
-                @Override
-                public void onno() {
-                }
-            });
-        }else if(item.getItemId()==R.id.account){
-            Intent intent = new Intent(Edit_My_Account.this, Edit_My_Account.class);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void init(){
         String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
         sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
@@ -124,6 +95,37 @@ public class Edit_My_Account extends AppCompatActivity {
         }else{
             return false;
         }
-
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_main_setting) {
+        } else if(item.getItemId()==R.id.logout){
+            msgbox.showyesno( "Hello","Are you sure you want to log out?");
+            msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                @Override
+                public void onyes() {
+                    Intent logout = new Intent(Edit_My_Account.this, Login.class);
+                    startActivity(logout);
+                    globalvars.logout();
+                }
+                @Override
+                public void onno() {
+                }
+            });
+        }else if(item.getItemId()==R.id.account){
+            Intent intent = new Intent(Edit_My_Account.this, My_Account.class);
+            startActivity(intent);
+        }else if(item.getItemId()==R.id.home){
+            Intent intent = new Intent(Edit_My_Account.this, Home.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

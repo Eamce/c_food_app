@@ -1,19 +1,24 @@
 package com.example.c_food_app;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Base64;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -26,15 +31,19 @@ public class Home extends AppCompatActivity {
     Ajax ajax;
     Globalvars globalvars;
     Msgbox msgbox;
+    EditText search_text;
     Context context = this;
+    SQLiteDatabase sqLiteDatabase;
+    Category_Adapter2 category_adapter2;
+    GridView category_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ajax = new Ajax();
         msgbox = new Msgbox(context);
-        GridView category_view;
-        ArrayList<Category> categoryArrayList = new ArrayList<Category>();
+        String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
+        sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
         category_view = (GridView) findViewById(R.id.grid_categories);
         FloatingActionButton fab = findViewById(R.id.fab);
         globalvars = new Globalvars(getApplicationContext(),this);
@@ -46,7 +55,10 @@ public class Home extends AppCompatActivity {
         Drawable clamps = this.getResources().getDrawable(R.drawable.clamps);
         Drawable guso = this.getResources().getDrawable(R.drawable.guso);
         Drawable oyster = this.getResources().getDrawable(R.drawable.oyster);
-        Drawable[] images = {shrimp, crabs, fish, squid, lobster, clamps, guso,oyster};
+        Drawable frozen_tilapia = this.getResources().getDrawable(R.drawable.frozen_tilapia);
+        Drawable dilis = this.getResources().getDrawable(R.drawable.dilis);
+        Drawable bisogo = this.getResources().getDrawable(R.drawable.driedfishbisogo);
+        Drawable[] images = {shrimp, crabs, fish, squid, lobster, clamps, guso,oyster,frozen_tilapia,dilis,bisogo};
 //        Bitmap bit_shrimp = ((BitmapDrawable) shrimp).getBitmap();
 //        Bitmap bit_crabs = ((BitmapDrawable) crabs).getBitmap();
 //        Bitmap bit_fish = ((BitmapDrawable) fish).getBitmap();
@@ -62,8 +74,8 @@ public class Home extends AppCompatActivity {
 //        String str_clamps = getStringImage(bit_clamps);
 //        String str_guso = getStringImage(bit_guso);
         //  int[] images={R.drawable.shrimp,R.drawable.crabs,R.drawable.fish,R.drawable.squid,R.drawable.lobster,R.drawable.lobster,R.drawable.clamps,R.drawable.clamps};
-        String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso","Oyster"};
-        String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00","125"};
+        String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso","Oyster","Frozen Tilapia","Dilis Fish","Dried Fish Bisogo"};
+        String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00","125.00","380.00","130.00","200.00"};
         Category_Adapter adapter = new Category_Adapter(getApplicationContext(), images, description, price, this);
         category_view.setAdapter(adapter);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +117,32 @@ public class Home extends AppCompatActivity {
             Intent intent = new Intent(Home.this, MyOrder.class);
             startActivity(intent);
         }
+//        else if(item.getItemId()==R.id.action_search){
+//            AlertDialog.Builder editBuilder = new AlertDialog.Builder(Home.this);
+//            editBuilder.setTitle("Search Item");
+//            search_text = new EditText(getApplicationContext());
+//            search_text.setInputType(InputType.TYPE_CLASS_NUMBER);
+//            search_text.setHint("Search...");
+//            editBuilder.setView(search_text);
+//            editBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+////                    sqLiteDatabase.execSQL("UPDATE cart set quantity="+search_text.getText().toString()+" where id="+iditem+"");
+////                    Toast.makeText(View_Cart.this, "Success!", Toast.LENGTH_SHORT).show();
+////                    Intent intent =new Intent(View_Cart.this,View_Cart.class);
+////                    startActivity(intent);
+////                    finish();
+//                }
+//            });
+//            editBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//                    dialogInterface.dismiss();
+//                }
+//            });
+//            AlertDialog editDialog = editBuilder.create();
+//            editDialog.show();
+//        }
         return super.onOptionsItemSelected(item);
     }
 

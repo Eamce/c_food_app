@@ -140,6 +140,9 @@ public class View_Item extends AppCompatActivity {
             }else if(item.getItemId()==R.id.account){
                 Intent intent = new Intent(View_Item.this, My_Account.class);
                 startActivity(intent);
+            }else if(item.getItemId()==R.id.home){
+                Intent intent = new Intent(View_Item.this, Home.class);
+                startActivity(intent);
             }
             return super.onOptionsItemSelected(item);
         }
