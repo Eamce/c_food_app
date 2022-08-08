@@ -59,7 +59,10 @@ public class Home extends AppCompatActivity {
         Drawable dilis = this.getResources().getDrawable(R.drawable.dilis);
         Drawable bisogo = this.getResources().getDrawable(R.drawable.driedfishbisogo);
         Drawable tuna = this.getResources().getDrawable(R.drawable.frozen_tuna);
-        Drawable[] images = {shrimp, crabs, fish, squid, lobster, clamps, guso,oyster,frozen_tilapia,dilis,bisogo,tuna};
+        Drawable sardines = this.getResources().getDrawable(R.drawable.frozen_sardines);
+        Drawable scallops = this.getResources().getDrawable(R.drawable.scallops);
+        Drawable froze_scallops = this.getResources().getDrawable(R.drawable.frozen_scallops);
+        Drawable[] images = {shrimp, crabs, fish, squid, lobster, clamps, guso,oyster,frozen_tilapia,dilis,bisogo,tuna,sardines,scallops,froze_scallops};
 //        Bitmap bit_shrimp = ((BitmapDrawable) shrimp).getBitmap();
 //        Bitmap bit_crabs = ((BitmapDrawable) crabs).getBitmap();
 //        Bitmap bit_fish = ((BitmapDrawable) fish).getBitmap();
@@ -77,9 +80,9 @@ public class Home extends AppCompatActivity {
         //  int[] images={R.drawable.shrimp,R.drawable.crabs,R.drawable.fish,R.drawable.squid,R.drawable.lobster,R.drawable.lobster,R.drawable.clamps,R.drawable.clamps};
         String[] description = {"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps",
                                 "Guso","Oyster","Frozen Tilapia","Dilis Fish","Dried Fish Bisogo",
-                                "Frozen Tuna"};
+                                "Frozen Tuna","Frozen Sardines","Scallops","Frozen Scallops"};
         String[] price = {"400.00", "400.00", "350.00", "380.00", "430.00", "400.00",
-                          "120.00","125.00","380.00","130.00","200.00","370.00"};
+                          "120.00","125.00","380.00","130.00","200.00","370.00","280.00","250.00","320.00"};
         Category_Adapter adapter = new Category_Adapter(getApplicationContext(), images, description, price, this);
         category_view.setAdapter(adapter);
         fab.setOnClickListener(new View.OnClickListener() {
