@@ -17,9 +17,9 @@
             android:fontFamily="casual"
             android:freezesText="false"
             android:textStyle="italic"
-            android:text="Choose the food you love!"
+            android:text="Choose the seafood you love!"
             android:textColor="@color/orange"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="7dp"
             android:textSize="25dp" />
 <!--        <EditText-->
 <!--            android:id="@+id/searchtext"-->
