@@ -148,7 +148,6 @@ public class View_Cart extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }
-
                     }
                     @Override
                     public void onno() {
@@ -244,7 +243,7 @@ public class View_Cart extends AppCompatActivity {
     }
 
     public void refreshList() {
-        ListView refresh_cartList = (ListView) findViewById(R.id.list_item);
+        ListView cartList = (ListView) findViewById(R.id.list_item);
         while (row.moveToNext()) {
             cartId = row.getString(1);
             descrption = row.getString(2);
@@ -262,9 +261,9 @@ public class View_Cart extends AppCompatActivity {
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             cart_list.add(cart = new Cart(cartId, decodedByte, descrption, price, total, quantity));
             Cart_Adapter cart_adapter = new Cart_Adapter(getApplicationContext(), cart_list, this);
-            refresh_cartList.setAdapter(cart_adapter);
+            cartList.setAdapter(cart_adapter);
         }
-        refresh_cartList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        cartList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
                     int pos=position+1;

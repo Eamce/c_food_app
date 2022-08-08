@@ -11,12 +11,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
+
         <TextView
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:freezesText="false"
+            android:textStyle="italic"
             android:text="Choose the food you love!"
-            android:textSize="25dp"
             android:textColor="@color/orange"
-            android:layout_height="wrap_content"/>
+            android:layout_marginBottom="10dp"
+            android:textSize="25dp" />
 <!--        <EditText-->
 <!--            android:id="@+id/searchtext"-->
 <!--            android:layout_width="match_parent"-->

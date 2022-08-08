@@ -91,7 +91,7 @@ public class Checkout_Details extends AppCompatActivity {
             cv.put("username",globalvars.get("name"));
             cv.put("cat_image",image);
             cv.put("total",total_payable);
-            cv.put("contact",globalvars.get("contact"));
+            cv.put("contact",globalvars.get("phone"));
             sqLiteDatabase.insert("tbl_order",null,cv);
         }
         checkout_btn.setOnClickListener(new View.OnClickListener() {
@@ -118,17 +118,6 @@ public class Checkout_Details extends AppCompatActivity {
 //                            text_total.setText("Total: " + total_payable);
 //
                             sqLiteDatabase.execSQL("Delete from cart");
-                            /*
-                 tbl_order(id INTEGER PRIMARY KEY,"+
-                "description TEXT,"+
-                "price TEXT,"+
-                "quantity TEXT,"+
-                "total TEXT,"+
-                "username TEXT,"+
-                "address TEXT,"+
-                "cat_image TEXT)");
-//                             */
-//                        }
                         Intent intent = new Intent(Checkout_Details.this, MyOrder.class);
                         startActivity(intent);
                         finish();

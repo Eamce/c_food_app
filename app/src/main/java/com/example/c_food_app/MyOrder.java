@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class MyOrder extends AppCompatActivity {
 
-    TextView userinfo;
+    TextView userinfo,totalView;
     ListView order_list;
     SQLiteDatabase sqLiteDatabase;
     Globalvars globalvars;
@@ -28,6 +28,7 @@ public class MyOrder extends AppCompatActivity {
     Context context= this;
     String id, description,price,quantity,total,username,str_address,cat_image,contact;
     String e_user;
+    double final_total=0,double_total=0;
     ArrayList<My_Order_Class> my_order;
 
     @Override
@@ -50,11 +51,15 @@ public class MyOrder extends AppCompatActivity {
             byte[] decodedString = Base64.decode(cat_image, Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             e_user = AES.decrypt(Server.key,username).toString();
-            userinfo.setText(e_user+"\n"+contact+"\n"+str_address);
+            double_total=Double.parseDouble(total);
+            String e_contact=AES.decrypt(Server.key,contact).toString();
+            userinfo.setText(e_user+"\n"+e_contact+"\n"+str_address);
+            final_total+=double_total;
+            totalView.setText("Total: "+final_total);
+            System.out.println("My Contact"+contact);
             my_order.add(new My_Order_Class(id, description,price,quantity,total,username,str_address,decodedByte,contact));
             My_Order_Adapter my_order_adapter = new My_Order_Adapter (getApplicationContext(),my_order,this);
             order_list.setAdapter(my_order_adapter);
-
         }
     }
 
@@ -63,6 +68,7 @@ public class MyOrder extends AppCompatActivity {
         sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
         globalvars = new Globalvars(getApplicationContext(),this);
         userinfo    = (TextView) findViewById(R.id.userinfo);
+        totalView    = (TextView) findViewById(R.id.total);
         msgbox = new Msgbox(context);
         order_list = (ListView) findViewById(R.id.order_list);
         my_order = new ArrayList<My_Order_Class>();

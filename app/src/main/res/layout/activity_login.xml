@@ -4,17 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".Login">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
-
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
-
         tools:ignore="MissingConstraints">
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,6 +19,38 @@
             android:layout_marginEnd="50dp"
             android:layout_gravity="center"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                android:text="Welcome"
+                android:textAlignment="center"
+                android:textSize="40dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="to"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="C-Food"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="40dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="cursive"
+                android:text="Shop your favorite seafoods!"
+                android:textAlignment="center"
+                android:textColor="@color/orange"
+                android:layout_marginBottom="30dp"
+                android:textSize="20dp" />
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

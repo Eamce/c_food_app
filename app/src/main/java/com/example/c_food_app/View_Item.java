@@ -85,9 +85,6 @@ public class View_Item extends AppCompatActivity {
                         }
                     });
     }
-
-
-
         public void init(){
             Intent intent  = getIntent(); // get Intent which we set from Previous Activity
             imageView      = findViewById(R.id.imageView);
@@ -141,7 +138,7 @@ public class View_Item extends AppCompatActivity {
                     }
                 });
             }else if(item.getItemId()==R.id.account){
-                Intent intent = new Intent(View_Item.this, Edit_My_Account.class);
+                Intent intent = new Intent(View_Item.this, My_Account.class);
                 startActivity(intent);
             }
             return super.onOptionsItemSelected(item);

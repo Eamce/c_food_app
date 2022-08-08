@@ -111,9 +111,9 @@ public class Set_Delivery_Address extends AppCompatActivity {
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                address.setText(town_province.getSelectedItem().toString().trim()+"\n"
-                        +town_spinner.getSelectedItem().toString().trim()+"\n"
-                        +town_barangay.getSelectedItem().toString().trim()+"\n"
+                address.setText(town_barangay.getSelectedItem().toString().trim()+" "
+                        +town_spinner.getSelectedItem().toString().trim()+" "
+                        +town_province.getSelectedItem().toString().trim()+"\n"
                         +otherdetails.getText().toString());
                 globalvars.set("delivery_address",address.getText().toString());
                 Intent intent = new Intent(Set_Delivery_Address.this,Checkout_Details.class);

@@ -33,8 +33,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
-        username.setText("sample@gmail.com");
-        password.setText("123456");
+//        username.setText("sample@gmail.com");
+//        password.setText("123456");
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +46,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent register = new Intent(Login.this, CreateAccount.class);
-                startActivity(register);
                 startActivity(register);
             }
         });
