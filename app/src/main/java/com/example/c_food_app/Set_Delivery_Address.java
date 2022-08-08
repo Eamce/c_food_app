@@ -26,7 +26,7 @@ public class Set_Delivery_Address extends AppCompatActivity {
     String[] town_status;
     String[] barangay;
     String[] province=new String[]{"Select Province","Bohol"};
-    String[] tw1,tw2,tw3,tw4,tw5,tw6,tw7,tw8,tw9,tw10;
+    String[] tw1,tw2,tw3,tw4,tw5,tw6,tw7,tw8,tw9,tw10,tw11,tw12,tw13,tw14,tw15,tw16,tw17,tw18;
     Spinner town_spinner;
     SQLiteDatabase sqLiteDatabase;
     TextView otherdetails;
@@ -37,6 +37,8 @@ public class Set_Delivery_Address extends AppCompatActivity {
     Button submit_btn;
     Spinner town_province;
     ArrayAdapter<String> tw1_adapter,tw2_adapter,tw3_adapter,tw4_adapter,tw5_adapter,tw6_adapter,tw7_adapter,tw8_adapter,tw9_adapter;
+    ArrayAdapter<String> tw10_adapter,tw11_adapter,tw12_adapter,tw13_adapter,tw14_adapter,tw15_adapter,tw16_adapter,tw17_adapter,tw18_adapter;
+    ArrayAdapter<String> tw19_adapter,tw20_adapter,tw21_adapter,tw22_adapter,tw23_adapter,tw24_adapter,tw25_adapter,tw26_adapter,tw27_adapter;
     TextView address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,24 @@ public class Set_Delivery_Address extends AppCompatActivity {
                     town_barangay.setAdapter(tw8_adapter);
                 }else if(town_spinner.getSelectedItemId()==9){
                     town_barangay.setAdapter(tw9_adapter);
+                }else if(town_spinner.getSelectedItemId()==10){
+                    town_barangay.setAdapter(tw10_adapter);
+                }else if(town_spinner.getSelectedItemId()==11){
+                    town_barangay.setAdapter(tw11_adapter);
+                }else if(town_spinner.getSelectedItemId()==12){
+                    town_barangay.setAdapter(tw12_adapter);
+                }else if(town_spinner.getSelectedItemId()==13){
+                    town_barangay.setAdapter(tw13_adapter);
+                }else if(town_spinner.getSelectedItemId()==14){
+                    town_barangay.setAdapter(tw14_adapter);
+                }else if(town_spinner.getSelectedItemId()==15){
+                    town_barangay.setAdapter(tw15_adapter);
+                }else if(town_spinner.getSelectedItemId()==16){
+                    town_barangay.setAdapter(tw16_adapter);
+                }else if(town_spinner.getSelectedItemId()==17){
+                    town_barangay.setAdapter(tw17_adapter);
+                }else if(town_spinner.getSelectedItemId()==18){
+                    town_barangay.setAdapter(tw18_adapter);
                 }
                 address.setText(town_province.getSelectedItem().toString().trim()+"\n"
                                     +town_spinner.getSelectedItem().toString().trim());
@@ -153,6 +173,7 @@ public class Set_Delivery_Address extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     public void init(){
         msgbox = new Msgbox(context);
         town_spinner = (Spinner) findViewById(R.id.town_spinner);
@@ -183,6 +204,24 @@ public class Set_Delivery_Address extends AppCompatActivity {
         tw8_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tw9_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw9);
         tw9_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw10_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw10);
+        tw10_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw11_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw11);
+        tw11_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw12_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw12);
+        tw12_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw13_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw13);
+        tw13_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw14_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw14);
+        tw14_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw15_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw15);
+        tw15_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw16_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw16);
+        tw16_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw17_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw17);
+        tw17_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tw18_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tw18);
+        tw18_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
     public List<String> getTown(){
@@ -210,34 +249,22 @@ public class Set_Delivery_Address extends AppCompatActivity {
         tw4=new String[]{"Select Barangay","Angilan", "Bantolinao", "Bicahan", "Bitaugan ", "Bungahan", "Canlaas", "Cansibuan", "Can-omay", "Ceiling", "Danao ", "Danicop", "Mag-aso", "Poblacion", "Quinapon-an", "Santo Rosario ", "Tabuan", "Tagubaas", "Tupas", "Obujan", "Viga ", "Villa Aurora"};
         tw5=new String[]{"Select Barangay","Payahan",  "Cambanac" ,  "Dasitam" ,  "Buenaventura" ,  "Guiwanon" ,  "Landican" ,  "Laya " ,  "Libertad" ,  "MontaÃ±a" ,  "Pamilacan" ,  "Poblacion" ,  "San Isidro " ,  "San Roque" ,  "San Vicente" ,  "Santa Cruz" ,  "Taguihon" ,  "Tanday "};
         tw6=new String[]{"Select Barangay","Baucan Norte", "Baucan Sur" , "Boctol" , "Boyog Norte " , "Boyog Proper" , "Boyog Sur" , "Cabad" , "Candasig" , "Cantalid " , "Cantomimbo" , "Cogon" , "Datag Norte" , "Datag Sur" , "Del Carmen Este (Pob.) " , "Del Carmen Norte (Pob.)" , "Del Carmen Weste (Pob.)" , "Del Carmen Sur (Pob.)" , "Del Rosario" , "Dorol " , "Haguilanan Grande" , "Hanopol Este" , "Hanopol Norte" , "Hanopol Weste" , "Magsija" , "Maslog" , "Sagasa" , "Sal-ing" , "San Isidro" , "San Roque" , "Santo Nino" , "Tagustusan" , "Poblacion"};
-        tw7=new String[]{"Aloja", "Behind The Clouds(San Jose)" , "Cabacnitan" , "Cambacay" , "Cantigdas" , "Garcia" , "Janlud" , "Poblacion Norte" , "Poblacion Sur" , "Poblacion Vieja" , "Quezon" , "Quirino" , "Rizal" , "Rosariohan" , "Santa Cruz"};
+        tw7=new String[]{"Aloja","Behind The Clouds(San Jose)" , "Cabacnitan" , "Cambacay" , "Cantigdas" , "Garcia" , "Janlud" , "Poblacion Norte" , "Poblacion Sur" , "Poblacion Vieja" , "Quezon" , "Quirino" , "Rizal" , "Rosariohan" , "Santa Cruz"};
         tw8=new String[]{"Bilangbilangan Dako", "Bilangbilangan Diot ", "Hingotanan East ", "Hingotanan West", "Liberty", "Malingin", "Mandawa", "Maomawan", "Nueva Esperanza      ", "Nueva Estrella   ", "Pinamgo     ", "Poblacion (Bien Unido Proper", "Puerto San Pedro (Lawis)  ", "Sagasa   ", "Tuboran"};
         tw9=new String[]{"Bonifacio", "Bugang Norte" , "Bugang Sur" , "Cabacnitan" , "Cambigsi" , "Campagao" , "Cansumbol" , "Dagohoy" , "Owac " , "Poblacion" , "Quezon" , "Riverside" , "Rizal" , "Roxas" , "Subayon" , "Villa Aurora" , "Villa Suerte" , "Yanaya" , "Zamora"};
-        tw10=new String[]{""};
-        tw10=new String[]{""};
-        tw10=new String[]{""};
-        tw10=new String[]{""};
-        tw10=new String[]{""};
-        tw10=new String[]{""};
-        tw10=new String[]{""};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        tw10=new String[]{"Anonang", "Asinan", "Bago", "Baluarte", "Bantuan", "Bato", "BonotBonot", "Bugaong", "Cambuhat", "Cambus-oc", "Cangawa", "Cantomugcad", "Cantores", "Cantuba", "Catigbian", "Cawag", "Cruz", "Dait", "Eastern Cabuln", "Hunan", "Lapacan Norte", "Lapacan Sur", "Lubang", "Lusong", "Magkaya", "Merryland", "Nueva Granada", "Nueva Montana", "Overland", "Panghagban", "Poblacion", "Putting Bato", "Rufo Hill", "Sweetland", "Western Cabul-an"};
+        tw11=new String[]{"Abucayan Norte", "Abucayan Sur", "Banlasan", "Bentig", "Binogawan", "Bonbon", "Cabayugan", "Cabudburan", "Calunasan", "Camias", "Canguha", "Catmonan", "Desamparados", "Kahayag", "Kinabag-an", "Labuon", "Lawis", "Liboron", "Lo-oc", "Lomboy", "Lucob", "Madangog", "Magtongtong", "Mandaug", "Mantatao", "Sampoangon", "San Isidro", "Santa Cruz", "Sojoton", "Talisay", "Tinibgan", "Tultugan", "Ulbujan"};
+        tw12=new String[]{"Abilihan","Anoling", "Boyo-an", "Cadapdapan", "Cambane", "Can-olin", "Canawa", "Cogtong", "La Union", "Luan", "Lungsoda-an", "Mahangin", "Pagahat", "Panadtaran", "Panas", "Poblacion", "San Isidro", "Tambongan", "Tawid", "Tugas", "Tubod"};
+        tw13=new String[]{"Aguining","Basiao", "Baud", "Bayog", "Bogo", "Bonbonon", "Canmangao", "Campamanog", "Gaus", "Kabangkalan", "Lapinig", "Lipata", "Poblacion", "Popoo", "Saguise", "San Jose", "Santo Rosario", "Tilmobo", "Tugnao", "Villa Milagrosa", "Butan", "San Vicente", "Tugas"};
+        tw14=new String[]{"Alegria", "Bica" , "Buenavist" , "Buenos Aire" , "Calatrav" , "El Progres" , "El Salvado" , "Guadalup" , "Katipuna" , "La Liberte" , "La Pa" , "La Salvacio" , "La Victori" , "Matin-a" , "Montehermos" , "MonteSuert" , "Montesuntin" , "Montevide" , "Nueva Fuerz" , "Nueva Vida Est" , "Nueva Vida Su" , "Nueva Vida Nort" , "Poblacion Nort" , "Poblacion Su" , "Tambo-a" , "Vallehermos" , "Villaflo" , "Villafuert" , "Villarcayo"};
+        tw15=new String[]{"Alegria", "Ambuan", "Baang", "Bagtic", "Bonbong", "Cambailan", "Candumayao", "Kang-iras", "Causwagan Norte", "Hagbuaya", "Haguilanan", "Libertad Sur", "Liboron", "Mahayag Norte", "Mahayag Sur", "Maitum", "Mantasida", "Poblacion", "Poblacion Weste", "Rizal", "Sinakayanan", "Triple Union"};
+        tw16=new String[]{"Bacani", "Bogtongbod", "Bonbon", "Bontud", "Buacao", "Buangan", "Cabog", "Caboy", "Caluwasan", "Candajec", "Cantoyoc", "Comaang", "Danahao", "Katipunan", "Lajog", "Mataub", "Nahawan", "Poblacion Centro", "Poblacion Norte", "Poblacion Sur", "Tangaran", "Tontunan", "Tubod", "Villaflor"};
+        tw17=new String[]{"Anislag", "Canangca-an", "Canapnapan", "Cancatac", "Pandol", "Poblacion", "Sambog", "Tanday"};
+        tw18=new String[]{"De La Paz", "Fatima", "Loreto", "Lourdes", "Malayo Norte", "Malayo Sur", "Monserrat", "New Lourdes", "Patrocinio", "Poblacion", "Rosario", "Salvador", "San Roque", "Upper De La Paz"};
+        tw17=new String[]{""};
+        tw17=new String[]{""};
+        tw17=new String[]{""};
+        tw17=new String[]{""};
 
 
 

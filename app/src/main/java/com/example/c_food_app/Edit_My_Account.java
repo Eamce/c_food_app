@@ -3,6 +3,7 @@ package com.example.c_food_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,10 +39,26 @@ public class Edit_My_Account extends AppCompatActivity {
                 if(fieldIsEmpty()){
                     Toast.makeText(context, "Fill Up Empty Fields!", Toast.LENGTH_SHORT).show();
                 }else{
-                    String edited_name = AES.encrypt(Server.key,fname.getText().toString()).toString();
-                    sqLiteDatabase.execSQL("UPDATE user SET name= "+edited_name+" WHERE user_id="+id+"");
+                    String edited_name =  AES.encrypt(Server.key,fname.getText().toString()).toString();
+                    String edited_email =  AES.encrypt(Server.key,email.getText().toString()).toString();
+                    String edited_phone =  AES.encrypt(Server.key,contact.getText().toString()).toString();
+                    String edited_password =  AES.encrypt(Server.key,pass.getText().toString()).toString();
+                    ContentValues values = new ContentValues();
+                    values.put("email", edited_email);
+                    values.put("name", edited_name);
+                    values.put("phone", edited_phone);
+                    values.put("password", edited_password);
+
+                    sqLiteDatabase.update("user",values,"user_id"+"= ?",new String[]{id});
+//                    sqLiteDatabase.update("user",values,"user_id"+ "=?",new String[]{id});
+//                    sqLiteDatabase.update("user",values,"user_id"+ "=1",null);
+//                    sqLiteDatabase.execSQL("UPDATE user SET email ="+edited_email+", name = "+edited_name+", phone = "+edited_phone+", password = "+edited_password+", WHERE user_id="+id+"");
+                    System.out.println("USER ID::"+id);
                     Toast.makeText(context, "Account Updated Successfully", Toast.LENGTH_SHORT).show();
                     globalvars.set("name",edited_name);
+                    globalvars.set("phone",edited_phone);
+                    globalvars.set("password",edited_password);
+                    globalvars.set("email",edited_email);
                     Intent intent = new Intent(Edit_My_Account.this, My_Account.class );
                     startActivity(intent);
                     finish();
