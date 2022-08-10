@@ -5,16 +5,23 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.GridView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.airbnb.lottie.LottieAnimationView;
+
+import java.io.ByteArrayOutputStream;
+
 public class MainActivity extends AppCompatActivity {
     LottieAnimationView animationView;
     Globalvars globalvars;
@@ -24,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
     String[] town_status;
     String[] barangay;
     String[] town_id;
+    ContentValues values;
+    Drawable[] images;
+    String[] description;
+    String[] price;
+    Drawable shrimp,crabs,fish,squid, lobster ,clamps ,guso, oyster, frozen_tilapia ,dilis ,bisogo ,tuna ,sardines, scallops ,froze_scallops;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //  sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase("cfood.db",MODE_PRIVATE,null);
         globalvars = new Globalvars(getApplicationContext(),this);
         createSqliteDatabase();
+        init();
         town_data();
         insert_town();
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
@@ -92,6 +105,47 @@ public class MainActivity extends AppCompatActivity {
         return connected;
     }
 
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    public void init(){
+        String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
+        sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
+        globalvars = new Globalvars(getApplicationContext(),this);
+        values = new ContentValues();
+        shrimp         = this.getResources().getDrawable(R.drawable.shrimp);
+        crabs          = this.getResources().getDrawable(R.drawable.crabs);
+        fish           = this.getResources().getDrawable(R.drawable.fish);
+        squid          = this.getResources().getDrawable(R.drawable.squid);
+        lobster        = this.getResources().getDrawable(R.drawable.lobster);
+        clamps         = this.getResources().getDrawable(R.drawable.clamps);
+        guso           = this.getResources().getDrawable(R.drawable.guso);
+        oyster         = this.getResources().getDrawable(R.drawable.oyster);
+        frozen_tilapia = this.getResources().getDrawable(R.drawable.frozen_tilapia);
+        dilis          = this.getResources().getDrawable(R.drawable.dilis);
+        bisogo         = this.getResources().getDrawable(R.drawable.driedfishbisogo);
+        tuna           = this.getResources().getDrawable(R.drawable.frozen_tuna);
+        sardines       = this.getResources().getDrawable(R.drawable.frozen_sardines);
+        scallops       = this.getResources().getDrawable(R.drawable.scallops);
+        froze_scallops = this.getResources().getDrawable(R.drawable.frozen_scallops);
+        images = new Drawable[]{shrimp, crabs, fish, squid, lobster, clamps, guso, oyster, frozen_tilapia, dilis, bisogo, tuna, sardines, scallops, froze_scallops};
+        description = new String[]{"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso", "Oyster", "Frozen Tilapia", "Dilis Fish", "Dried Fish Bisogo", "Frozen Tuna", "Frozen Sardines", "Scallops", "Frozen Scallops"};
+        price = new String[]{"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00", "125.00", "380.00", "130.00", "200.00", "370.00", "280.00", "250.00", "320.00"};
+    }
+    public void insertItems(){
+        for(int i =0;i<images.length;i++){
+            Drawable drawable = images[i];
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+            values.put("image",getStringImage(bitmap));
+            values.put("description",description[i]);
+            values.put("price",price[i]);
+        }
+    }
     public void createSqliteDatabase(){
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS cart(id INTEGER PRIMARY KEY,"+
                 "cart_id TEXT,"+
@@ -195,70 +249,9 @@ public class MainActivity extends AppCompatActivity {
                     "9",
                     "9",
                     "9",
-                    "9",
-                    "9",
-                    "9",
-                    "9",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10",
-                    "10", "10",
-                    "10", "10", "10", "10", "10", "10", "10", "10", "11", "11", "11", "11",
+                    "9", "9", "9", "9", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11",
                     "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "11",
-                    "12",
-                    "12",
-                    "12",
-                    "12",
+                    "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "12", "12", "12", "12",
                     "12",
                     "12",
                     "12",
@@ -406,53 +399,8 @@ public class MainActivity extends AppCompatActivity {
                     "24",
                     "24",
                     "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "24",
-                    "25",
-                    "25",
-                    "25",
-                    "25",
-                    "25",
-                    "25",
-                    "25",
-                    "25",
-                    "25",
-                    "25",
-                    "25",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
-                    "27",
+                    "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "24", "25", "25",
+                    "25", "25", "25", "25", "25", "25", "25", "25", "25", "27", "27", "27", "27", "27", "27", "27", "27", "27", "27", "27", "27", "27", "27",
                     "27",
                     "27",
                     "27",

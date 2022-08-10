@@ -101,10 +101,10 @@ public class Home extends AppCompatActivity {
         public void init(){
             ajax = new Ajax();
             msgbox = new Msgbox(context);
-            String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
-            sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
             category_view = (GridView) findViewById(R.id.grid_categories);
             fab = findViewById(R.id.fab);
+            String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
+            sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
             globalvars = new Globalvars(getApplicationContext(),this);
             values = new ContentValues();
             shrimp         = this.getResources().getDrawable(R.drawable.shrimp);
