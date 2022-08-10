@@ -38,6 +38,11 @@ public class Login extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(username.getText().toString()=="admin" && password.getText().toString()=="admin"){
+                    Intent intent = new Intent(Login.this, Admin_Home.class);
+                    startActivity(intent);
+                    finish();
+                }
                 encryptData();
                 checkUser(encrypted_user,encrypted_pass);
             }

@@ -17,9 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C_food_app">
         <activity
-            android:name=".MyOrder"
-            android:label="Order Details"
+            android:name=".Admin_Home"
+            android:label="Admin"
             android:exported="false" />
+        <activity
+            android:name=".MyOrder"
+            android:exported="false"
+            android:label="Order Details" />
         <activity
             android:name=".Set_Delivery_Address"
             android:exported="false" />
@@ -28,8 +32,8 @@
             android:exported="false" />
         <activity
             android:name=".View_Cart"
-            android:label="My Cart"
-            android:exported="false" />
+            android:exported="false"
+            android:label="My Cart" />
         <activity
             android:name=".Edit_My_Account"
             android:exported="false" />
@@ -41,23 +45,24 @@
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:label="Home"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Home" />
         <activity
             android:name=".CreateAccount"
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:label="Log in"
-            android:exported="false" />
-
+            android:exported="false"
+            android:label="Log in" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

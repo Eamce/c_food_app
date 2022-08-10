@@ -6,14 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CreateAccount">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:textAlignment="center"
         android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="Create Account"
+        android:textStyle="italic"
+        android:textAlignment="center"
         android:textColor="@color/blue"
-        android:textSize=".2in"
-        android:text="Register" />
+        android:textSize=".2in" />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
