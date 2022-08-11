@@ -101,7 +101,7 @@ public class Checkout_Details extends AppCompatActivity {
                 msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
                     @Override
                     public void onyes() {
-//                        while (row.moveToNext()) {
+   //                        while (row.moveToNext()) {
 //                            id = row.getString(0);
 //                            cartId = row.getString(1);
 //                            descrption = row.getString(2);

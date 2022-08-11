@@ -82,8 +82,8 @@ public class View_Cart extends AppCompatActivity {
             System.out.println("total_: " + total);
             System.out.println("total_payable: " + total_payable);
         }
-            Cart_Adapter cart_adapter = new Cart_Adapter(getApplicationContext(), cart_list, this);
-            cartList.setAdapter(cart_adapter);
+        Cart_Adapter cart_adapter = new Cart_Adapter(getApplicationContext(), cart_list, this);
+        cartList.setAdapter(cart_adapter);
 //            cartList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 //                @Override
 //                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -265,69 +265,69 @@ public class View_Cart extends AppCompatActivity {
             System.out.println("total_payable: " + total_payable);
         }
         cartList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    int pos=position+1;
-                    AlertDialog.Builder builder = new AlertDialog.Builder(View_Cart.this);
-                    final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(View_Cart.this, android.R.layout.simple_list_item_1);
-                    arrayAdapter.add("Edit");
-                    arrayAdapter.add("Delete");
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    });
-                    builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            String strOption = arrayAdapter.getItem(i);
-                            if (strOption.equalsIgnoreCase("Edit")) {
-                                Toast.makeText(View_Cart.this, "ASDSFHSDUFSDFGSD", Toast.LENGTH_SHORT).show();
-                                confirmEdit(String.valueOf(pos));
-                            } else if (strOption.equalsIgnoreCase("Delete")) {
-                                System.out.println("IDDDDDDD::::::"+cart.getCart_id());
-                                confirmRemove(cart.getCart_id(), cart.getDescription());
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                int pos=position+1;
+                AlertDialog.Builder builder = new AlertDialog.Builder(View_Cart.this);
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(View_Cart.this, android.R.layout.simple_list_item_1);
+                arrayAdapter.add("Edit");
+                arrayAdapter.add("Delete");
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String strOption = arrayAdapter.getItem(i);
+                        if (strOption.equalsIgnoreCase("Edit")) {
+                            Toast.makeText(View_Cart.this, "ASDSFHSDUFSDFGSD", Toast.LENGTH_SHORT).show();
+                            confirmEdit(String.valueOf(pos));
+                        } else if (strOption.equalsIgnoreCase("Delete")) {
+                            System.out.println("IDDDDDDD::::::"+cart.getCart_id());
+                            confirmRemove(cart.getCart_id(), cart.getDescription());
 
 //                               Toast.makeText(View_Cart.this, "DELETE BUTTON", Toast.LENGTH_SHORT).show();
-                            }
                         }
-                    });
-                    builder.show();
-                    return false;
-                }
-            });
+                    }
+                });
+                builder.show();
+                return false;
+            }
+        });
         registerForContextMenu(cartList);
     }
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.main_menu, menu);
-            return true;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_main_setting) {
+        } else if(item.getItemId()==R.id.logout){
+            msgbox.showyesno( "Hello","Are you sure you want to log out?");
+            msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
+                @Override
+                public void onyes() {
+                    Intent logout = new Intent(View_Cart.this, Login.class);
+                    startActivity(logout);
+                    globalvars.logout();
+                }
+                @Override
+                public void onno() {
+                }
+            });
+        }else if(item.getItemId()==R.id.account){
+            Intent intent = new Intent(View_Cart.this, Edit_My_Account.class);
+            startActivity(intent);
+        }else if(item.getItemId()==R.id.home){
+            Intent intent = new Intent(View_Cart.this, Home.class);
+            startActivity(intent);
         }
-        @Override
-        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-            if (item.getItemId() == R.id.menu_main_setting) {
-            } else if(item.getItemId()==R.id.logout){
-                msgbox.showyesno( "Hello","Are you sure you want to log out?");
-                msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
-                    @Override
-                    public void onyes() {
-                        Intent logout = new Intent(View_Cart.this, Login.class);
-                        startActivity(logout);
-                        globalvars.logout();
-                    }
-                    @Override
-                    public void onno() {
-                    }
-                });
-            }else if(item.getItemId()==R.id.account){
-                Intent intent = new Intent(View_Cart.this, Edit_My_Account.class);
-                startActivity(intent);
-            }else if(item.getItemId()==R.id.home){
-                Intent intent = new Intent(View_Cart.this, Home.class);
-                startActivity(intent);
-            }
-            return super.onOptionsItemSelected(item);
-        }
+        return super.onOptionsItemSelected(item);
+    }
 }

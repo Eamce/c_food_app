@@ -44,10 +44,6 @@ public class MainActivity extends AppCompatActivity {
         sqLiteDatabase = openOrCreateDatabase("cfood.db", MODE_PRIVATE,null);
         //  sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase("cfood.db",MODE_PRIVATE,null);
         globalvars = new Globalvars(getApplicationContext(),this);
-        createSqliteDatabase();
-        init();
-        town_data();
-        insert_town();
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -57,16 +53,20 @@ public class MainActivity extends AppCompatActivity {
                 animator.addUpdateListener(animation -> { animationView.setProgress((Float) animation.getAnimatedValue()); });
                 animator.start();
                 LottieAnimationView animationView = findViewById(R.id.animationView);
+                createSqliteDatabase();
+                init();
+                town_data();
+                insert_town();
+                deleteitems();
+                insertItems();
                 animationView.addAnimatorUpdateListener((animation) -> {
                     // Do something.
                     if (isConnected()) {
-//                        Intent intent = new Intent(MainActivity.this, Home.class);
-//                        startActivity(intent);
-//                        finish();
                         if(globalvars.get("id").isEmpty()){
                             Intent intent = new Intent(MainActivity.this, Login.class);
                             startActivity(intent);
                             finish();
+
                         }else{
                             Intent intent = new Intent(MainActivity.this, Home.class);
                             startActivity(intent);
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         },5000);
+
     }
 
     public boolean isConnected() {
@@ -133,9 +134,9 @@ public class MainActivity extends AppCompatActivity {
         sardines       = this.getResources().getDrawable(R.drawable.frozen_sardines);
         scallops       = this.getResources().getDrawable(R.drawable.scallops);
         froze_scallops = this.getResources().getDrawable(R.drawable.frozen_scallops);
-        images = new Drawable[]{shrimp, crabs, fish, squid, lobster, clamps, guso, oyster, frozen_tilapia, dilis, bisogo, tuna, sardines, scallops, froze_scallops};
-        description = new String[]{"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso", "Oyster", "Frozen Tilapia", "Dilis Fish", "Dried Fish Bisogo", "Frozen Tuna", "Frozen Sardines", "Scallops", "Frozen Scallops"};
-        price = new String[]{"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00", "125.00", "380.00", "130.00", "200.00", "370.00", "280.00", "250.00", "320.00"};
+        images = new Drawable[]{shrimp, crabs, fish, squid, lobster, clamps, guso, oyster, dilis, tuna, sardines, scallops, froze_scallops};
+        description = new String[]{"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso", "Oyster", "Dilis Fish", "Frozen Tuna", "Frozen Sardines", "Scallops", "Frozen Scallops"};
+        price = new String[]{"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00", "125.00", "130.00", "370.00", "280.00", "250.00", "320.00"};
     }
     public void insertItems(){
         for(int i =0;i<images.length;i++){
@@ -144,7 +145,13 @@ public class MainActivity extends AppCompatActivity {
             values.put("image",getStringImage(bitmap));
             values.put("description",description[i]);
             values.put("price",price[i]);
+            values.put("quantity","20");
+            sqLiteDatabase.insert("items",null,values);
         }
+    }
+
+    public void deleteitems(){
+        sqLiteDatabase.delete("items",null,null);
     }
     public void createSqliteDatabase(){
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS cart(id INTEGER PRIMARY KEY,"+
@@ -160,9 +167,11 @@ public class MainActivity extends AppCompatActivity {
                 "price TEXT,"+
                 "quantity TEXT,"+
                 "total TEXT,"+
+                "user_id TEXT,"+
                 "username TEXT,"+
                 "address TEXT,"+
                 "contact TEXT,"+
+                "status TEXT,"+
                 "cat_image TEXT)");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS tbl_sub_order(id INTEGER PRIMARY KEY,"+
                 "customer_name TEXT,"+

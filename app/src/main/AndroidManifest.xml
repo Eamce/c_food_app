@@ -9,7 +9,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label=""
         android:largeHeap="true"
@@ -17,9 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C_food_app">
         <activity
-            android:name=".Admin_Home"
-            android:label="Admin"
+            android:name=".Admin_View_Ordered"
             android:exported="false" />
+        <activity
+            android:name=".Admin_Home"
+            android:exported="false"
+            android:label="Admin" />
         <activity
             android:name=".MyOrder"
             android:exported="false"

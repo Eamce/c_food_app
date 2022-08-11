@@ -25,7 +25,7 @@ public class Category_Adapter extends BaseAdapter {
 
     LayoutInflater inflater;
     Drawable images[];
-//    int images[];
+    //    int images[];
     String description[];
     String prices[];
     Context context;

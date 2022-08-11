@@ -48,6 +48,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        init();
         Category_Adapter adapter = new Category_Adapter(getApplicationContext(), images, description, price, this);
         category_view.setAdapter(adapter);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,35 +99,35 @@ public class Home extends AppCompatActivity {
         return encodedImage;
     }
 
-        public void init(){
-            ajax = new Ajax();
-            msgbox = new Msgbox(context);
-            category_view = (GridView) findViewById(R.id.grid_categories);
-            fab = findViewById(R.id.fab);
-            String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
-            sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
-            globalvars = new Globalvars(getApplicationContext(),this);
-            values = new ContentValues();
-            shrimp         = this.getResources().getDrawable(R.drawable.shrimp);
-            crabs          = this.getResources().getDrawable(R.drawable.crabs);
-            fish           = this.getResources().getDrawable(R.drawable.fish);
-            squid          = this.getResources().getDrawable(R.drawable.squid);
-            lobster        = this.getResources().getDrawable(R.drawable.lobster);
-            clamps         = this.getResources().getDrawable(R.drawable.clamps);
-            guso           = this.getResources().getDrawable(R.drawable.guso);
-            oyster         = this.getResources().getDrawable(R.drawable.oyster);
-            frozen_tilapia = this.getResources().getDrawable(R.drawable.frozen_tilapia);
-            dilis          = this.getResources().getDrawable(R.drawable.dilis);
-            bisogo         = this.getResources().getDrawable(R.drawable.driedfishbisogo);
-            tuna           = this.getResources().getDrawable(R.drawable.frozen_tuna);
-            sardines       = this.getResources().getDrawable(R.drawable.frozen_sardines);
-            scallops       = this.getResources().getDrawable(R.drawable.scallops);
-            froze_scallops = this.getResources().getDrawable(R.drawable.frozen_scallops);
-            images = new Drawable[]{shrimp, crabs, fish, squid, lobster, clamps, guso, oyster, frozen_tilapia, dilis, bisogo, tuna, sardines, scallops, froze_scallops};
-            description = new String[]{"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso", "Oyster", "Frozen Tilapia", "Dilis Fish", "Dried Fish Bisogo", "Frozen Tuna", "Frozen Sardines", "Scallops", "Frozen Scallops"};
-            price = new String[]{"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00", "125.00", "380.00", "130.00", "200.00", "370.00", "280.00", "250.00", "320.00"};
-        }
+    public void init(){
+        ajax = new Ajax();
+        msgbox = new Msgbox(context);
+        category_view = (GridView) findViewById(R.id.grid_categories);
+        fab = findViewById(R.id.fab);
+        String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
+        sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
+        globalvars = new Globalvars(getApplicationContext(),this);
+        values = new ContentValues();
+        shrimp         = this.getResources().getDrawable(R.drawable.shrimp);
+        crabs          = this.getResources().getDrawable(R.drawable.crabs);
+        fish           = this.getResources().getDrawable(R.drawable.fish);
+        squid          = this.getResources().getDrawable(R.drawable.squid);
+        lobster        = this.getResources().getDrawable(R.drawable.lobster);
+        clamps         = this.getResources().getDrawable(R.drawable.clamps);
+        guso           = this.getResources().getDrawable(R.drawable.guso);
+        oyster         = this.getResources().getDrawable(R.drawable.oyster);
+        frozen_tilapia = this.getResources().getDrawable(R.drawable.frozen_tilapia);
+        dilis          = this.getResources().getDrawable(R.drawable.dilis);
+        bisogo         = this.getResources().getDrawable(R.drawable.driedfishbisogo);
+        tuna           = this.getResources().getDrawable(R.drawable.frozen_tuna);
+        sardines       = this.getResources().getDrawable(R.drawable.frozen_sardines);
+        scallops       = this.getResources().getDrawable(R.drawable.scallops);
+        froze_scallops = this.getResources().getDrawable(R.drawable.frozen_scallops);
+        images = new Drawable[]{shrimp, crabs, fish, squid, lobster, clamps, guso, oyster, frozen_tilapia, dilis, bisogo, tuna, sardines, scallops, froze_scallops};
+        description = new String[]{"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso", "Oyster", "Frozen Tilapia", "Dilis Fish", "Dried Fish Bisogo", "Frozen Tuna", "Frozen Sardines", "Scallops", "Frozen Scallops"};
+        price = new String[]{"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00", "125.00", "380.00", "130.00", "200.00", "370.00", "280.00", "250.00", "320.00"};
     }
+}
 
 
 //    Bitmap bit_shrimp = ((BitmapDrawable) shrimp).getBitmap();
