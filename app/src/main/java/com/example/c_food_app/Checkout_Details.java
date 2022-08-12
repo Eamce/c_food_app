@@ -158,12 +158,12 @@ public class Checkout_Details extends AppCompatActivity {
             msgbox.setMsgboxListener(new Msgbox.MsgboxListener() {
                 @Override
                 public void onyes() {
-                    Intent logout = new Intent(Checkout_Details.this, Login.class);
+                    Intent logout = new Intent(  Checkout_Details.this, Login.class);
                     startActivity(logout);
                     globalvars.logout();
                 }
                 @Override
-                public void onno() {
+                public void onno() {    
                 }
             });
         }else if(item.getItemId()==R.id.account){

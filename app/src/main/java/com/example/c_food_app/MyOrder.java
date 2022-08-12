@@ -37,7 +37,6 @@ public class MyOrder extends AppCompatActivity {
         setContentView(R.layout.activity_my_order);
         init();
         Cursor row = sqLiteDatabase.rawQuery("Select * from tbl_order",null);
-
         while(row.moveToNext()){
             id          = row.getString(0);
             description = row.getString(1);
@@ -62,24 +61,21 @@ public class MyOrder extends AppCompatActivity {
             order_list.setAdapter(my_order_adapter);
         }
     }
-
     public void init(){
-        String path = getApplicationContext().getDatabasePath("cfood.db").getPath();
-        sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
-        globalvars = new Globalvars(getApplicationContext(),this);
-        userinfo    = (TextView) findViewById(R.id.userinfo);
-        totalView    = (TextView) findViewById(R.id.total);
-        msgbox = new Msgbox(context);
-        order_list = (ListView) findViewById(R.id.order_list);
-        my_order = new ArrayList<My_Order_Class>();
+        String path     = getApplicationContext().getDatabasePath("cfood.db").getPath();
+        sqLiteDatabase  = openOrCreateDatabase(path, MODE_PRIVATE, null);
+        globalvars      = new Globalvars(getApplicationContext(),this);
+        userinfo        = (TextView) findViewById(R.id.userinfo);
+        totalView       = (TextView) findViewById(R.id.total);
+        msgbox          = new Msgbox(context);
+        order_list      = (ListView) findViewById(R.id.order_list);
+        my_order        = new ArrayList<My_Order_Class>();
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_main_setting) {
@@ -100,7 +96,7 @@ public class MyOrder extends AppCompatActivity {
             Intent intent = new Intent(MyOrder.this, My_Account.class);
             startActivity(intent);
         }else if(item.getItemId()==R.id.home){
-            Intent intent = new Intent(MyOrder.this, Home.class);
+            Intent intent = new Intent(MyOrder.this, Home   .class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

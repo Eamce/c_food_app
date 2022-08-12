@@ -10,9 +10,11 @@ public class AdminViewOrderedClass {
     private String address;
     private String contact;
     private String status;
+    private String id;
+    private String description;
     private String cat_image;
 
-    public AdminViewOrderedClass(String price, String quantity, String total, String user_id, String username, String address, String contact, String status, String cat_image) {
+    public AdminViewOrderedClass(String id,String description,String price, String quantity, String total, String user_id, String username, String address, String contact, String status, String cat_image) {
         this.price = price;
         this.quantity = quantity;
         this.total = total;
@@ -21,7 +23,8 @@ public class AdminViewOrderedClass {
         this.address = address;
         this.contact = contact;
         this.status = status;
-        this.cat_image = cat_image;
+        this.id = id;
+        this.description = description;
     }
 
     public String getPrice() {
@@ -94,5 +97,21 @@ public class AdminViewOrderedClass {
 
     public void setCat_image(String cat_image) {
         this.cat_image = cat_image;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

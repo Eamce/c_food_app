@@ -2,6 +2,7 @@ package com.example.c_food_app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -44,6 +45,7 @@ public class AdminViewOrderedAdapter extends ArrayAdapter<AdminViewOrderedClass>
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
        View view = convertView;
+        LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
        return view;
     }
