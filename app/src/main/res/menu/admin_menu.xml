@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <item-->
+<!--        android:id="@+id/menu_main_setting"-->
+<!--        android:title="Setting" />-->
+<!--    <item-->
+<!--        android:id="@+id/account"-->
+<!--        android:icon="@drawable/person"-->
+<!--        android:title="My Account" />-->
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home_icon"
+        app:showAsAction="always"
+        android:title="Log out" />
+    <item
+        android:id="@+id/logout"
+        app:showAsAction="always"
+        android:icon="@drawable/logout"
+        android:title="Log out" />
+    <!--        <item-->
+    <!--            android:id="@+id/action_search"-->
+    <!--            android:icon="@android:drawable/ic_menu_search"-->
+    <!--            android:title="Search"-->
+    <!--            app:showAsAction="ifRoom|collapseActionView"-->
+    <!--            app:actionViewClass="androidx.appcompat.widget.SearchView" />-->
+    <!--            app:showAsAction="ifRoom|collapseActionView"
+    -->
+</menu>

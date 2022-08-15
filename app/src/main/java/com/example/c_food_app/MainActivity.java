@@ -63,16 +63,20 @@ public class MainActivity extends AppCompatActivity {
                     // Do something.
                     if (isConnected()) {
                         if(globalvars.get("id").isEmpty()){
-                            Intent intent = new Intent(MainActivity.this, Login.class);
-                            startActivity(intent);
-                            finish();
-
+                            if(globalvars.get("user").isEmpty()){
+                                Intent intent = new Intent(MainActivity.this, Login.class);
+                                startActivity(intent);
+                                finish();
+                            }else{
+                                Intent intent = new Intent(MainActivity.this, Admin_Home.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }else{
                             Intent intent = new Intent(MainActivity.this, Home.class);
                             startActivity(intent);
                             finish();
                         }
-
                     } else {
                         Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
                     }

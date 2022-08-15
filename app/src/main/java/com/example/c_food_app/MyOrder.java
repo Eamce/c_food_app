@@ -26,7 +26,7 @@ public class MyOrder extends AppCompatActivity {
     Globalvars globalvars;
     Msgbox msgbox;
     Context context= this;
-    String id, description,price,quantity,total,username,str_address,cat_image,contact;
+    String id, description,price,quantity,total,username,str_address,cat_image,contact,user_id,status;
     String e_user;
     double final_total=0,double_total=0;
     ArrayList<My_Order_Class> my_order;
@@ -43,10 +43,12 @@ public class MyOrder extends AppCompatActivity {
             price       = row.getString(2);
             quantity    = row.getString(3);
             total       = row.getString(4);
-            username    = row.getString(5);
-            str_address = row.getString(6);
-            contact     = row.getString(7);
-            cat_image   = row.getString(8);
+            user_id     = row.getString(5);
+            username    = row.getString(6);
+            str_address = row.getString(7);
+            contact     = row.getString(8);
+            status      = row.getString(9);
+            cat_image   = row.getString(10);
             byte[] decodedString = Base64.decode(cat_image, Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             e_user = AES.decrypt(Server.key,username).toString();
@@ -61,6 +63,7 @@ public class MyOrder extends AppCompatActivity {
             order_list.setAdapter(my_order_adapter);
         }
     }
+
     public void init(){
         String path     = getApplicationContext().getDatabasePath("cfood.db").getPath();
         sqLiteDatabase  = openOrCreateDatabase(path, MODE_PRIVATE, null);
@@ -71,11 +74,13 @@ public class MyOrder extends AppCompatActivity {
         order_list      = (ListView) findViewById(R.id.order_list);
         my_order        = new ArrayList<My_Order_Class>();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_main_setting) {
@@ -96,7 +101,7 @@ public class MyOrder extends AppCompatActivity {
             Intent intent = new Intent(MyOrder.this, My_Account.class);
             startActivity(intent);
         }else if(item.getItemId()==R.id.home){
-            Intent intent = new Intent(MyOrder.this, Home   .class);
+            Intent intent = new Intent(MyOrder.this, Home.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

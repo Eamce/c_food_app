@@ -38,13 +38,16 @@ public class Login extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(username.getText().toString()=="admin" && password.getText().toString()=="admin"){
+                if(username.getText().toString().equalsIgnoreCase("admin") && password.getText().toString().equalsIgnoreCase("admin")){
                     Intent intent = new Intent(Login.this, Admin_Home.class);
                     startActivity(intent);
                     finish();
+                    globalvars.set("user","admin");
+                }else{
+                    encryptData();
+                    checkUser(encrypted_user,encrypted_pass);
                 }
-                encryptData();
-                checkUser(encrypted_user,encrypted_pass);
+
             }
         });
         tv_createaccount.setOnClickListener(new View.OnClickListener() {

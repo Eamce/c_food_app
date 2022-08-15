@@ -91,7 +91,7 @@
                         android:layout_weight=".5">
 
                         <Button
-                            android:id="@+id/btnagc3"
+                            android:id="@+id/view_purchased_btn"
                             android:layout_width="match_parent"
                             android:layout_height="250dp"
                             android:layout_weight="1"

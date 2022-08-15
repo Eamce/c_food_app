@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Appprojects/c_food_app(old)/app/src/main/res/layout/activity_admin_home.xml" value="0.15534420289855072" />
         <entry key="..\:/Appprojects/c_food_app(old)/app/src/main/res/layout/activity_admin_view_ordered.xml" value="0.16757246376811594" />
+        <entry key="..\:/Appprojects/c_food_app(old)/app/src/main/res/layout/activity_home.xml" value="0.1921875" />
+        <entry key="..\:/Appprojects/c_food_app(old)/app/src/main/res/layout/activity_my_order.xml" value="0.1921875" />
         <entry key="..\:/Appprojects/c_food_app(old)/app/src/main/res/layout/admin_view_ordered_layout.xml" value="0.16757246376811594" />
+        <entry key="..\:/Appprojects/c_food_app(old)/app/src/main/res/layout/my_order_layout.xml" value="0.1921875" />
+        <entry key="..\:/Appprojects/c_food_app(old)/app/src/main/res/menu/admin_menu.xml" value="0.1921875" />
         <entry key="..\:/Appprojects/c_food_app/app/src/main/res/drawable/addtocart_icon.xml" value="0.1625" />
         <entry key="..\:/Appprojects/c_food_app/app/src/main/res/layout/activity_admin_home.xml" value="0.1933876811594203" />
         <entry key="..\:/Appprojects/c_food_app/app/src/main/res/layout/activity_cart.xml" value="0.2056159420289855" />

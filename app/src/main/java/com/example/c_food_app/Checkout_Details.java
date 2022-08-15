@@ -91,6 +91,8 @@ public class Checkout_Details extends AppCompatActivity {
             cv.put("username",globalvars.get("name"));
             cv.put("cat_image",image);
             cv.put("total",total_payable);
+            cv.put("user_id",globalvars.get("id"));
+            cv.put("status","pending");
             cv.put("contact",globalvars.get("phone"));
             sqLiteDatabase.insert("tbl_order",null,cv);
         }

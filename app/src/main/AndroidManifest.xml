@@ -18,6 +18,7 @@
         android:theme="@style/Theme.C_food_app">
         <activity
             android:name=".Admin_View_Ordered"
+            android:label="Admin View Ordered"
             android:exported="false" />
         <activity
             android:name=".Admin_Home"
@@ -29,7 +30,8 @@
             android:label="Order Details" />
         <activity
             android:name=".Set_Delivery_Address"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Set Delivery Address"/>
         <activity
             android:name=".Checkout_Details"
             android:exported="false" />
