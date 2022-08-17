@@ -39,7 +39,8 @@ public class Admin_Home extends AppCompatActivity {
         view_items_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(Admin_Home.this,Admin_View_Item.class);
+                startActivity(intent);
             }
         });
     }

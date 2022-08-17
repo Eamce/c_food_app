@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin_View_Item">
-<ListView
-    android:id="@+id/list_item"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:ignore="MissingConstraints" />
+    tools:context=".Admin_View_User">
+
 </androidx.constraintlayout.widget.ConstraintLayout>

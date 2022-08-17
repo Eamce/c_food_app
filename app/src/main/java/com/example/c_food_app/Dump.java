@@ -1,10 +1,16 @@
 package com.example.c_food_app;
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.Gravity;
 import android.widget.Toast;
 
 public class Dump {
+
+//    byte[] decodedString = Base64.decode(str_img, Base64.DEFAULT);
+//    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 //    public void  saveItems(String[] des, String[] pr, String[] img) {
 //        final ProgressDialog pd = new ProgressDialog(this);
 //        pd.setMessage("Uploading...Please Wait");
