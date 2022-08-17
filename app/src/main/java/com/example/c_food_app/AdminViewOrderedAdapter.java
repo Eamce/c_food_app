@@ -2,6 +2,9 @@ package com.example.c_food_app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +19,6 @@ import java.util.ArrayList;
 
 
 public class AdminViewOrderedAdapter extends ArrayAdapter<AdminViewOrderedClass> {
-
     ArrayList<AdminViewOrderedClass> order_list;
     Activity activity;
     Context context;
@@ -28,7 +30,6 @@ public class AdminViewOrderedAdapter extends ArrayAdapter<AdminViewOrderedClass>
         this.activity=activity;
         this.order_list=order_list;
     }
-
     @Nullable
     @Override
     public AdminViewOrderedClass getItem(int position) {
@@ -56,6 +57,9 @@ public class AdminViewOrderedAdapter extends ArrayAdapter<AdminViewOrderedClass>
                  price      = (TextView) view.findViewById(R.id.price);
                  quantity   = (TextView) view.findViewById(R.id.quantity);
                  total      = (TextView) view.findViewById(R.id.total);
+                 byte[] decodedString = Base64.decode(avdc.getCat_image(), Base64.DEFAULT);
+                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                 prod_image.setImageBitmap(decodedByte);
                  total.setText("Total :"+avdc.getTotal());
                  desc.setText(avdc.getDescription());
                  price.setText(avdc.getPrice());

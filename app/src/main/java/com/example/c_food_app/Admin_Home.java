@@ -32,7 +32,6 @@ public class Admin_Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Admin_Home.this, Admin_View_Ordered.class);
                 startActivity(intent );
-
             }
         });
     }

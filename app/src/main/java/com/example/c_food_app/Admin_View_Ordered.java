@@ -32,6 +32,7 @@ public class Admin_View_Ordered extends AppCompatActivity {
         path = getApplicationContext().getDatabasePath("cfood.db").getPath();
         sqLiteDatabase = openOrCreateDatabase(path, MODE_PRIVATE, null);
         row =sqLiteDatabase.rawQuery("Select * from tbl_order",null);
+        viewOrderedClasses = new ArrayList<AdminViewOrderedClass>();
     }
 
     public void getOrdered(){
