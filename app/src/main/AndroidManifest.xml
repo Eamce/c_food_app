@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.c_food_app">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:hardwareAccelerated="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label=""
         android:largeHeap="true"
@@ -15,9 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.C_food_app">
         <activity
-            android:name=".Admin_View_Ordered"
-            android:label="Admin View Ordered"
+            android:name=".Admin_View_Item"
             android:exported="false" />
+        <activity
+            android:name=".Admin_View_Ordered"
+            android:exported="false"
+            android:label="Admin View Ordered" />
         <activity
             android:name=".Admin_Home"
             android:exported="false"
@@ -29,7 +34,7 @@
         <activity
             android:name=".Set_Delivery_Address"
             android:exported="false"
-            android:label="Set Delivery Address"/>
+            android:label="Set Delivery Address" />
         <activity
             android:name=".Checkout_Details"
             android:exported="false" />

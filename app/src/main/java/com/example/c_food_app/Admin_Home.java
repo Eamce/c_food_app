@@ -21,17 +21,25 @@ public class Admin_Home extends AppCompatActivity {
     Msgbox msgbox;
     Context context=this;
     Globalvars globalvars;
-    Button view_purchased_btn;
+    Button view_purchased_btn,view_items_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
         init();
+
         view_purchased_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Admin_Home.this, Admin_View_Ordered.class);
                 startActivity(intent );
+            }
+        });
+
+        view_items_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }
@@ -42,6 +50,7 @@ public class Admin_Home extends AppCompatActivity {
         view_purchased  = (TextView) findViewById(R.id.view_purchased);
         view_account    = (TextView) findViewById(R.id.view_account);
         view_purchased_btn = (Button) findViewById(R.id.view_purchased_btn) ;
+        view_items_btn = (Button) findViewById(R.id.view_items_btn) ;
         globalvars = new Globalvars(getApplicationContext(),this);
         msgbox = new Msgbox(context);
         setfontawesome(R.id.view_customer,"\uf0ca");

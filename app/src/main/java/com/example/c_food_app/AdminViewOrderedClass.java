@@ -25,6 +25,7 @@ public class AdminViewOrderedClass {
         this.status = status;
         this.id = id;
         this.description = description;
+        this.cat_image = cat_image;
     }
 
     public String getPrice() {
@@ -38,79 +39,60 @@ public class AdminViewOrderedClass {
     public String getQuantity() {
         return quantity;
     }
-
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
-
     public String getTotal() {
         return total;
     }
-
     public void setTotal(String total) {
         this.total = total;
     }
-
     public String getUser_id() {
         return user_id;
     }
-
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
-
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
-
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
-
     public String getContact() {
         return contact;
     }
-
     public void setContact(String contact) {
         this.contact = contact;
     }
-
     public String getStatus() {
         return status;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }
-
     public String getCat_image() {
         return cat_image;
     }
-
     public void setCat_image(String cat_image) {
         this.cat_image = cat_image;
     }
-
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
