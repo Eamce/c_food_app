@@ -8,6 +8,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Base64;
+import android.widget.GridView;
+import android.widget.ListView;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class Admin_View_Item extends AppCompatActivity {
     String[] description;
     String[] price;
     String str_img;
+    ListView list_item;
+    GridView gridView;
     Drawable shrimp,crabs,fish,squid, lobster ,clamps ,guso, oyster, frozen_tilapia ,dilis ,bisogo ,tuna ,sardines, scallops ,froze_scallops;
 
     @Override
@@ -34,11 +38,14 @@ public class Admin_View_Item extends AppCompatActivity {
             //String cat_name, String cat_img, String price, String prod_id)
             adminViewItemClasses.add(new AdminViewItemClass(description[i],str_img,price[i],String.valueOf(i)));
             AdminViewItemAdapter adapter = new AdminViewItemAdapter(getApplicationContext(),adminViewItemClasses,this);
+            list_item.setAdapter(adapter);
         }
     }
 
     public void init(){
         adminViewItemClasses = new ArrayList<AdminViewItemClass>();
+        list_item = (ListView) findViewById(R.id.list_item);
+//        GridView gridView = (GridView) findViewById(R.id.gridview);
         shrimp         = this.getResources().getDrawable(R.drawable.shrimp);
         crabs          = this.getResources().getDrawable(R.drawable.crabs);
         fish           = this.getResources().getDrawable(R.drawable.fish);
@@ -54,9 +61,9 @@ public class Admin_View_Item extends AppCompatActivity {
         sardines       = this.getResources().getDrawable(R.drawable.frozen_sardines);
         scallops       = this.getResources().getDrawable(R.drawable.scallops);
         froze_scallops = this.getResources().getDrawable(R.drawable.frozen_scallops);
-        images = new Drawable[]{shrimp, crabs, fish, squid, lobster, clamps, guso, oyster, frozen_tilapia, dilis, bisogo, tuna, sardines, scallops, froze_scallops};
-        description = new String[]{"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso", "Oyster", "Frozen Tilapia", "Dilis Fish", "Dried Fish Bisogo", "Frozen Tuna", "Frozen Sardines", "Scallops", "Frozen Scallops"};
-        price = new String[]{"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00", "125.00", "380.00", "130.00", "200.00", "370.00", "280.00", "250.00", "320.00"};
+        images         = new Drawable[]{shrimp, crabs, fish, squid, lobster, clamps, guso, oyster, frozen_tilapia, dilis, bisogo, tuna, sardines, scallops, froze_scallops};
+        description    = new String[]{"Shrimp", "Crabs", "Fish", "Squid", "Lobster", "Clamps", "Guso", "Oyster", "Frozen Tilapia", "Dilis Fish", "Dried Fish Bisogo", "Frozen Tuna", "Frozen Sardines", "Scallops", "Frozen Scallops"};
+        price          = new String[]{"400.00", "400.00", "350.00", "380.00", "430.00", "400.00", "120.00", "125.00", "380.00", "130.00", "200.00", "370.00", "280.00", "250.00", "320.00"};
     }
     public String getStringImage(Bitmap bmp){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
