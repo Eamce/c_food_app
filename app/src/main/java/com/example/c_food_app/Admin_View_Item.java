@@ -34,7 +34,6 @@ public class Admin_View_Item extends AppCompatActivity {
             Drawable drawable = images[i];
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
             str_img= getStringImage(bitmap);
-
             //String cat_name, String cat_img, String price, String prod_id)
             adminViewItemClasses.add(new AdminViewItemClass(description[i],str_img,price[i],String.valueOf(i)));
             AdminViewItemAdapter adapter = new AdminViewItemAdapter(getApplicationContext(),adminViewItemClasses,this);
